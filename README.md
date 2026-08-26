@@ -16,6 +16,10 @@ The course comprises the following parts:
 - **Part 7**: [React Router, Custom Hooks, Styling App](https://github.com/niezle-ziolko/full-stack-open/tree/main/part7)
 - **Part 8**: [GraphQL](https://github.com/niezle-ziolko/full-stack-open/tree/main/part8)
 - **Part 9**: [TypeScript](https://github.com/niezle-ziolko/full-stack-open/tree/main/part9)
+- **Part 10**: [React Native](https://github.com/niezle-ziolko/full-stack-open/tree/main/part10)
+- **Part 11**: [CI/CD](https://github.com/niezle-ziolko/full-stack-open/tree/main/part11)
+- **Part 12**: [Containers](https://github.com/niezle-ziolko/full-stack-open/tree/main/part12)
+- **Part 13**: [Using relational databases](https://github.com/niezle-ziolko/full-stack-open/tree/main/part13)
 
 ## 🧠 Skills and Knowledge Acquired
 
@@ -87,6 +91,14 @@ Full Stack Open 2024 Certificate: [View Certificate](https://studies.cs.helsinki
 GraphQL Module Certificate: [View Certificate](https://studies.cs.helsinki.fi/stats/api/certificate/fs-graphql/en/e3b6449c9d897e23d13c8e68cb3e7083)
 
 TypeScript Module Certificate: [View Certificate](https://studies.cs.helsinki.fi/stats/api/certificate/fs-typescript/en/1b930c77caf568886e8e2c42d595f31a)
+
+React Native Module Certificate: [View Certificate](https://studies.cs.helsinki.fi/stats/api/certificate/fs-react-native-2020/en/33a43a06dd7b1ea3d52f403b851661f9)
+
+CI/CD Module Certificate: [View Certificate](https://studies.cs.helsinki.fi/stats/api/certificate/fs-cicd/en/5dda0bc700abcc41219c50eb2fe0f5cf)
+
+Containers Module Certificate: [View Certificate](https://studies.cs.helsinki.fi/stats/api/certificate/fs-containers/en/650e207f50c96ddeb4e1628bef3bcfa4)
+
+Using relational databases Module Certificate: [View Certificate](https://studies.cs.helsinki.fi/stats/api/certificate/fs-psql/en/6f1007beeb074607d2f881b100e0143b)
 
 ## 🎓 ECTS Credits
 

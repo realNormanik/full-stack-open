@@ -1,0 +1,14 @@
+Script started on 2025-04-22 17:54:05+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="160" LINES="11"]
+$ docker run -it ubuntu bash
+
+
+[?2004h]0;root@d33d52f94f5b: /root@d33d52f94f5b:/# 
+[?2004l[?2004h]0;root@d33d52f94f5b: /root@d33d52f94f5b:/# [7mmkdir -p /usr/src/app[27mmkdir -p /usr/src/app
+[?2004l[?2004h]0;root@d33d52f94f5b: /root@d33d52f94f5b:/# [7mecho 'console.log("Hello from inside the container!");' > /usr/src/app/index.js[27m]0;root@d33d52f94f5b: /root@d33d52f94f5b:/# echo 'console.log("Hello from inside the container!");' > /usr/src/app/index.js
+[?2004l[?2004h]0;root@d33d52f94f5b: /root@d33d52f94f5b:/# [K[7mexit[27m
+[Aroot@d33d52f94f5b:/# exit
+[K[Aroot@d33d52f94f5b:/# exit
+[?2004lexit
+$ exit
+
+Script done on 2025-04-22 17:55:47+00:00 [COMMAND_EXIT_CODE="0"]

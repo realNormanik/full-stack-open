@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:1.20.1
+    container_name: nginx
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+      - ./todo-frontend/dist:/usr/share/nginx/html:ro
+    ports:
+      - 8080:80
+    depends_on:
+      - todo-frontend
+      - todo-backend
+
+  todo-frontend:
+    container_name: todo-frontend
+    image: todo-frontend-dev
+    build:
+      context: ./todo-frontend
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./todo-frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_BACKEND_URL=https://8080-niezleziolk-fullstackop-ydxnh98zwrx.ws-eu118.gitpod.io/api
+
+  todo-backend:
+    container_name: todo-backend
+    image: todo-backend-dev
+    build:
+      context: ./todo-backend
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./todo-backend:/app
+      - /app/node_modules
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/the_database
+      - REDIS_URL=redis://redis:6379
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  mongo-data:
+  redis-data:

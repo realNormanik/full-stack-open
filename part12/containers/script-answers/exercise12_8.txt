@@ -1,0 +1,61 @@
+Script started on 2025-04-23 10:18:59+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="199" LINES="15"]
+$ ^[[A^[[A^[[A            cd todo-app/todo-backend
+$ docker-compos             docker exec -it 5af45c6e8a4b mongosh -u the_username -p the_password
+]0;mongosh mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000Current Mongosh Log ID:	6808bed57c1a8c3a88d861df
+Connecting to:		[1m[32mmongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.0[0m
+Using MongoDB:		8.0.8
+[1m[33mUsing Mongosh[0m:		2.5.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+[1G[0J [1G[?2004h[1m[33m------[0m
+   [1m[33mThe server generated these startup warnings when booting[0m
+   2025-04-23T10:15:45.222+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2025-04-23T10:15:45.222+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2025-04-23T10:15:45.222+00:00: We suggest setting the contents of sysfsFile to 0.
+   2025-04-23T10:15:45.222+00:00: vm.max_map_count is too low
+   2025-04-23T10:15:45.222+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+[1m[33m------[0m
+
+[1G[0Jtest> [7Gshow dbs
+[1madmin[0m             100.00 KiB
+[1mconfig[0m             12.00 KiB
+[1mlocal[0m              72.00 KiB
+[1mthe_databasecopy[0m   40.00 KiB
+[1G[0Jtest> [7Guse the_databasecopy
+switched to db the_databasecopy
+[1G[0Jthe_databasecopy> [19Gshow collections
+[1mtodos[0m
+[1G[0Jthe_databasecopy> [19Gdb.todos.find({})
+[
+  {
+    _id: ObjectId([32m'6808be3780cc3ba42bd861e0'[39m),
+    text: [32m'Increase the number of tools in my tool belt'[39m,
+    done: [33mfalse[39m
+  }
+]
+[1G[0Jthe_databasecopy> [19Gdb.todos.insertOne({
+[1G[0J... [5G  text: [32m"[39m[32mA[39m[32md[39m[32md[39m[32mi[39m[32mn[39m[32mg[39m [32ma[39m [32mn[39m[32me[39m[32mw[39m [32mt[39m[32mo[39m[32mo[39m[32ml[39m [32md[39m[32mu[39m[32mr[39m[32mi[39m[32mn[39m[32mg[39m [32mr[39m[32me[39m[32mc[39m[32mo[39m[32mr[39m[32md[39m[32mi[39m[32mn[39m[32mg[39m[32m"[39m,
+[1G[0J... [5G  d[36mdo[39mdone: fals[33mfalse[39m
+[1G[0J... [5G})
+{
+  acknowledged: [33mtrue[39m,
+  insertedId: ObjectId([32m'6808bf347c1a8c3a88d861e0'[39m)
+}
+[1G[0Jthe_databasecopy> [19Gdb.todos.find({})
+[
+  {
+    _id: ObjectId([32m'6808be3780cc3ba42bd861e0'[39m),
+    text: [32m'Increase the number of tools in my tool belt'[39m,
+    done: [33mfalse[39m
+  },
+  {
+    _id: ObjectId([32m'6808bf347c1a8c3a88d861e0'[39m),
+    text: [32m'Adding a new tool during recording'[39m,
+    done: [33mfalse[39m
+  }
+]
+[1G[0Jthe_databasecopy> [19Gexirt[1G[0Jthe_databasecopy> exir[23G[1G[0Jthe_databasecopy> exi[22Gt
+[?2004l$ exit
+
+Script done on 2025-04-23 10:22:08+00:00 [COMMAND_EXIT_CODE="0"]
