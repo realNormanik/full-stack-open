@@ -1,6 +1,6 @@
 # Full Stack Open 2024 - Part 8: GraphQL Backend
 
-This project is a GraphQL backend for a simple library management system developed as part of exercises **8.1.–8.26.** of the Full Stack Open course. The backend supports querying and managing books and authors, user authentication, and real-time updates via subscriptions.
+This project is a GraphQL backend for a simple library management system developed as part of exercises **8.1.–8.29.** of the Full Stack Open course. The backend supports querying and managing books and authors, user authentication, and real-time updates via subscriptions.
 
 ## 🗂️ Project Structure
 
@@ -8,8 +8,8 @@ The project is organized following the recommended structure for Full Stack Open
 
 ```
 part8/
-├── graphql-frontend
-└── graphql-backend/
+├── library-frontend
+└── library-backend/
     ├── .gitignore
     ├── index.js
     ├── models.js
@@ -18,7 +18,7 @@ part8/
     └── README.md
 ```
 
-All course materials for "Graphql Frontend" exercises **8.1.–8.26.** are located inside the `graphql-backend` folder.
+All course materials for "Graphql Frontend" exercises **8.1.–8.29.** are located inside the `graphql-backend` folder.
 
 ## ✅ Exercises Overview
 

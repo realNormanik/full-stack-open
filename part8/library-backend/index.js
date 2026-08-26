@@ -98,6 +98,8 @@ const typeDefs = /* GraphQL */ `
       username: String!
       password: String!
     ): Token
+
+    _resetDatabase: Boolean
   }
 
   type Subscription {
@@ -258,6 +260,18 @@ const resolvers = {
       const token = jwt.sign({ username: user.username, id: user._id }, JWT_SECRET, { expiresIn: "1h" });
 
       return { token };
+    },
+
+    _resetDatabase: async () => {
+      if (process.env.NODE_ENV !== "test") {
+        throw new GraphQLError("_resetDatabase is only available in test mode");
+      };
+
+      await Author.deleteMany({});
+      await Book.deleteMany({});
+      await User.deleteMany({});
+
+      return true;
     }
   },
 
