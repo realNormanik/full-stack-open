@@ -520,13 +520,13 @@ Follow these steps to run the project locally:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/niezle-ziolko/full-stack-open-containers
+git clone https://github.com/realNormanik/full-stack-open.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd full-stack-open-containers/todo-app
+cd full-stack-open/part12/todo-app
 ```
 
 3. Start the development environment:

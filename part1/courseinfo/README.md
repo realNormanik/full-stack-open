@@ -68,13 +68,13 @@ Follow these steps to run the project locally:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/niezle-ziolko/full-stack-open
+git clone https://github.com/realNormanik/full-stack-open.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd part1/courseinfo
+cd full-stack-open/part1/courseinfo
 ```
 
 3. Install the dependencies:

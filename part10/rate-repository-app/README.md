@@ -1629,28 +1629,34 @@ Follow these steps to run the project locally:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/niezle-ziolko/full-stack-open-rate-repository-app
+git clone https://github.com/realNormanik/full-stack-open.git
 ```
 
-2. Install the dependencies:
+2. Navigate to the project directory:
+
+```bash
+cd full-stack-open/part10/rate-repository-app
+```
+
+3. Install the dependencies:
 
 ```bash
 npm install
 ```
 
-3. Start test:
+4. Start test:
 
 ```bash
 npm run test
 ```
 
-4. Start the development server:
+5. Start the development server:
 
 ```bash
 npm run server
 ```
 
-5. Development mode (depending on the system):
+6. Development mode (depending on the system):
 
 ```bash
 npm run android

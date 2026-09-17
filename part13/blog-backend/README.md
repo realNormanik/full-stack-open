@@ -653,13 +653,13 @@ Follow these steps to run the project locally:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/niezle-ziolko/full-stack-open-blog-backend
+git clone https://github.com/realNormanik/full-stack-open.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd full-stack-open-blog-backend
+cd full-stack-open/part13/blog-backend
 ```
 
 3. Install the dependencies:

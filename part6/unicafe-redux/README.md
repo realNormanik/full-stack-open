@@ -84,13 +84,13 @@ Follow these steps to run the project locally:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/niezle-ziolko/full-stack-open
+git clone https://github.com/realNormanik/full-stack-open.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd part6/unicafe-redux
+cd full-stack-open/part6/unicafe-redux
 ```
 
 3. Install the dependencies:

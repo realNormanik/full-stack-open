@@ -1,7 +1,9 @@
-const Home = () => {
+import Homepage from "./homepage.mdx"
+
+export default function Home() {
   return (
-    <h1>Hello world!</h1>
+    <div className="markdown">
+      <Homepage />
+    </div>
   )
 }
-
-export default Home
