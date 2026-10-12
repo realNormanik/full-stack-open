@@ -1,28 +1,48 @@
+
 const personsRouter = require("express").Router();
 const { MongoClient, ObjectId } = require("mongodb");
 
 const uri = process.env.MONGODB_URI;
-
-const client = new MongoClient(uri);
 const dbName = process.env.MONGODB_NAME;
 
-let db;
+if (!uri) {
+  throw new Error("Missing MONGODB_URI environment variable");
+}
 
-client.connect()
-  .then(() => {
-    db = client.db(dbName);
-    console.log("Connected to persons database");
-  })
-  .catch(err => console.error("Error connecting to persons database:", err));
+if (!dbName) {
+  throw new Error("Missing MONGODB_NAME environment variable");
+}
 
-const getCollection = () => db.collection("persons");
+// Jeden klient na instancję aplikacji
+const client = new MongoClient(uri);
+
+let dbPromise;
+
+async function getDb() {
+  if (!dbPromise) {
+    dbPromise = client.connect()
+      .then(() => {
+        console.log("Connected to MongoDB Atlas");
+        return client.db(dbName);
+      })
+      .catch((err) => {
+        dbPromise = null;
+        console.error("MongoDB connection failed:", err.message);
+        throw err;
+      });
+  }
+
+  return dbPromise;
+}
 
 // GET /api/persons
 personsRouter.get("/", async (req, res) => {
   try {
-    const persons = await getCollection().find({}).toArray();
+    const db = await getDb();
+    const persons = await db.collection("persons").find({}).toArray();
     res.json(persons);
   } catch (error) {
+    console.error("GET persons failed:", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -34,7 +54,8 @@ personsRouter.get("/:id", async (req, res) => {
       return res.status(400).json({ error: "Invalid ID" });
     }
 
-    const person = await getCollection().findOne({
+    const db = await getDb();
+    const person = await db.collection("persons").findOne({
       _id: new ObjectId(req.params.id)
     });
 
@@ -44,6 +65,7 @@ personsRouter.get("/:id", async (req, res) => {
       res.status(404).json({ error: "Person not found" });
     }
   } catch (error) {
+    console.error("GET person failed:", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -55,7 +77,8 @@ personsRouter.delete("/:id", async (req, res) => {
       return res.status(400).json({ error: "Invalid ID" });
     }
 
-    const result = await getCollection().deleteOne({
+    const db = await getDb();
+    const result = await db.collection("persons").deleteOne({
       _id: new ObjectId(req.params.id)
     });
 
@@ -65,6 +88,7 @@ personsRouter.delete("/:id", async (req, res) => {
       res.status(404).json({ error: "Person not found" });
     }
   } catch (error) {
+    console.error("DELETE person failed:", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -80,7 +104,10 @@ personsRouter.post("/", async (req, res) => {
       });
     }
 
-    const existingPerson = await getCollection().findOne({ name });
+    const db = await getDb();
+    const collection = db.collection("persons");
+
+    const existingPerson = await collection.findOne({ name });
 
     if (existingPerson) {
       return res.status(400).json({
@@ -89,13 +116,14 @@ personsRouter.post("/", async (req, res) => {
     }
 
     const newPerson = { name, number };
-    const result = await getCollection().insertOne(newPerson);
+    const result = await collection.insertOne(newPerson);
 
     res.status(201).json({
       ...newPerson,
       _id: result.insertedId
     });
   } catch (error) {
+    console.error("POST person failed:", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -115,8 +143,12 @@ personsRouter.put("/:id", async (req, res) => {
       });
     }
 
-    const result = await getCollection().updateOne(
-      { _id: new ObjectId(req.params.id) },
+    const db = await getDb();
+    const collection = db.collection("persons");
+    const id = new ObjectId(req.params.id);
+
+    const result = await collection.updateOne(
+      { _id: id },
       { $set: { name, number } }
     );
 
@@ -124,12 +156,10 @@ personsRouter.put("/:id", async (req, res) => {
       return res.status(404).json({ error: "Person not found" });
     }
 
-    const updatedPerson = await getCollection().findOne({
-      _id: new ObjectId(req.params.id)
-    });
-
+    const updatedPerson = await collection.findOne({ _id: id });
     res.json(updatedPerson);
   } catch (error) {
+    console.error("PUT person failed:", error.message);
     res.status(500).json({ error: "Internal server error" });
   }
 });
