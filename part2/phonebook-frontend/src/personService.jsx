@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseUrl = 'https://phonebook-backend.niezle-ziolko.workers.dev/api/persons';
+const baseUrl = `${import.meta.env.VITE_API_URL}/api/persons`;
 
 // Function to fetch all persons
 const getAll = () => {

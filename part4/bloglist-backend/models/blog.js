@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const Comment = require('./comment');
+const mongoose = require("mongoose");
+const Comment = require("./comment");
 
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   likes: { type: Number, default: 0 },
   author: { type: String, required: true },
   url: { type: String, required: true },
@@ -35,6 +35,6 @@ blogSchema.methods.toJSON = function() {
   return blogObject;
 };
 
-const Blog = mongoose.model('Blog', blogSchema);
+const Blog = mongoose.model("Blog", blogSchema);
 
 module.exports = Blog;

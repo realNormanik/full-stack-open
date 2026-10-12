@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseUrl = 'http://localhost:3003/api/blogs';
+const baseUrl = `${import.meta.env.VITE_API_URL}/api/blogs`;
 
 // Fetch all blogs
 const getAll = () => {
   const request = axios.get(baseUrl, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : ''}`
+      Authorization: `Bearer ${localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : ""}`
     }
   });
   
@@ -18,7 +18,7 @@ const addBlog = (newBlog, token) => {
   const request = axios.post(baseUrl, newBlog, {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   });
   
@@ -30,7 +30,7 @@ const likeBlog = (blogId, updatedBlog, token) => {
   const request = axios.put(`${baseUrl}/${blogId}`, updatedBlog, {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   });
   

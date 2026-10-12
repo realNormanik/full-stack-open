@@ -11,8 +11,9 @@ part6/
 ├── redux-anecdotes
 └── unicafe-redux/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
+    │   ├── index.css
     │   ├── main.jsx
     │   ├── reducer.js
     │   └── reducer.test.js
@@ -21,7 +22,7 @@ part6/
     ├── .gitignore
     ├── index.js
     ├── package-lock.json
-    ├── package.json 
+    ├── package.json
     ├── README.md
     └── vite.config.js
 ```
@@ -47,8 +48,8 @@ During the development of the project in Part 6, the following tasks were perfor
 **Example test:**
 
 ```js
-test('ok is incremented', () => {
-  const action = { type: 'OK' }
+test("ok is incremented", () => {
+  const action = { type: "OK" }
   const state = initialState
   deepFreeze(state)
 
@@ -67,10 +68,10 @@ test('ok is incremented', () => {
 **Example UI logic (simplified):**
 
 ```jsx
-<button onClick={() => dispatch({ type: 'GOOD' })}>good</button>
-<button onClick={() => dispatch({ type: 'OK' })}>ok</button>
-<button onClick={() => dispatch({ type: 'BAD' })}>bad</button>
-<button onClick={() => dispatch({ type: 'ZERO' })}>reset stats</button>
+<button onClick={() => dispatch({ type: "GOOD" })}>good</button>
+<button onClick={() => dispatch({ type: "OK" })}>ok</button>
+<button onClick={() => dispatch({ type: "BAD" })}>bad</button>
+<button onClick={() => dispatch({ type: "ZERO" })}>reset stats</button>
 
 <p>good: {good}</p>
 <p>ok: {ok}</p>
@@ -115,6 +116,6 @@ The application is available at [http://localhost:5173](http://localhost:5173).
 
 ## 🧠 Notes
 
-- `deep-freeze` ensures the reducer does not mutate the original state — a core Redux principle.
+- `deep-freeze` ensures the reducer does not mutate the original state - a core Redux principle.
 - The reducer logic is minimal and extendable.
 - The app follows Redux best practices, keeping logic centralized and components lean.

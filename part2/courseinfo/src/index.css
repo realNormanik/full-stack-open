@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Geist", sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
+
+  /* Semantic colors */
+  --color-background: oklch(97.8% 0.004 250);
+
+  --color-panel: oklch(100% 0 0);
+  --color-soft: oklch(95.4% 0.006 250);
+
+  --color-foreground: oklch(21% 0.02 255);
+  --color-muted: oklch(52% 0.02 255);
+
+  --color-line: oklch(91% 0.006 250);
+
+  --color-brand: oklch(50% 0.11 195);
+  --color-brand-soft: oklch(94.5% 0.03 195);
+  --color-on-brand: oklch(100% 0 0);
+
+  --animate-grow: grow 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(17% 0.02 255);
+
+    --color-panel: oklch(21% 0.022 255);
+    --color-soft: oklch(26% 0.024 255);
+
+    --color-foreground: oklch(95% 0.006 250);
+    --color-muted: oklch(70% 0.02 255);
+
+    --color-line: oklch(31% 0.024 255);
+
+    --color-brand: oklch(80% 0.11 195);
+    --color-brand-soft: oklch(28% 0.05 195);
+    --color-on-brand: oklch(20% 0.03 195);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+  }
+
+  h1 {
+    @apply font-display text-5xl font-semibold leading-[1.02] tracking-tight text-foreground sm:text-7xl;
+  }
+
+  h2 {
+    @apply font-display text-3xl font-semibold leading-tight tracking-tight text-foreground;
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}

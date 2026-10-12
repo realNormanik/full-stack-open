@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Gabarito", sans-serif;
+
+  /* Semantic colors */
+  --color-background: oklch(95.5% 0.004 30);
+
+  --color-panel: oklch(100% 0 0);
+  --color-soft: oklch(94% 0.006 30);
+
+  --color-foreground: oklch(19% 0.012 30);
+  --color-muted: oklch(50% 0.015 30);
+
+  --color-line: oklch(90% 0.006 30);
+
+  --color-brand: oklch(70% 0.19 28);
+  --color-brand-ink: oklch(52% 0.22 25);
+  --color-brand-soft: oklch(94.5% 0.04 30);
+  --color-on-brand: oklch(20% 0.05 25);
+
+  --animate-pop: pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(14% 0.01 30);
+
+    --color-panel: oklch(19% 0.012 30);
+    --color-soft: oklch(25% 0.014 30);
+
+    --color-foreground: oklch(96% 0.005 60);
+    --color-muted: oklch(70% 0.015 40);
+
+    --color-line: oklch(29% 0.015 30);
+
+    --color-brand: oklch(72% 0.19 28);
+    --color-brand-ink: oklch(78% 0.15 28);
+    --color-brand-soft: oklch(30% 0.08 25);
+    --color-on-brand: oklch(18% 0.04 25);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+    @apply selection:bg-brand selection:text-on-brand;
+  }
+
+  section {
+    @apply rounded-4xl border border-line bg-panel;
+  }
+
+  h1 {
+    @apply font-display text-6xl font-black leading-[0.9] tracking-tight text-foreground sm:text-8xl;
+  }
+
+  h2 {
+    @apply mb-5 font-display text-2xl font-bold tracking-tight text-foreground;
+  }
+
+  form {
+    @apply flex flex-col gap-3;
+  }
+
+  label {
+    @apply mb-2 ml-1 block text-xs font-bold text-muted;
+  }
+
+  input {
+    @apply w-full rounded-full border border-transparent bg-soft py-3.5 pl-5 pr-4 text-sm font-medium text-foreground;
+    @apply placeholder:text-muted outline-none transition;
+    @apply focus:border-brand focus:bg-panel focus:ring-4 focus:ring-brand/25;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+@utility u2 {
+  @apply pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 fill-muted;
+}
+
+@utility u3 {
+  @apply relative flex flex-col justify-between overflow-hidden rounded-4xl p-6;
+}
+
+@utility card {
+  @apply u3 border border-line bg-panel transition;
+  @apply hover:border-brand;
+}
+
+@utility card-soft {
+  @apply u3 bg-brand-soft text-brand-ink;
+}
+
+@utility card-ink {
+  @apply u3 bg-foreground text-background sm:p-8;
+}
+
+@utility card-brand {
+  @apply relative flex flex-col justify-end overflow-hidden rounded-4xl bg-brand p-8 text-on-brand;
+}
+
+@utility chip {
+  @apply inline-flex items-center rounded-full bg-brand px-3 py-1 text-xs font-bold text-on-brand;
+}
+
+@utility create {
+  @apply inline-flex shrink-0 items-center justify-center gap-1 rounded-full bg-foreground px-4 py-2 text-sm font-bold text-background fill-background transition;
+  @apply hover:bg-brand hover:text-on-brand hover:fill-on-brand active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/40;
+}
+
+@utility vote {
+  @apply inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2 font-sans text-sm font-bold text-on-brand transition;
+  @apply hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/40;
+}

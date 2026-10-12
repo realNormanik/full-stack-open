@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Geist", sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
+
+  /* Semantic colors */
+  --color-background: oklch(97.8% 0.004 250);
+
+  --color-panel: oklch(100% 0 0);
+  --color-soft: oklch(95.4% 0.006 250);
+
+  --color-foreground: oklch(21% 0.02 255);
+  --color-muted: oklch(52% 0.02 255);
+
+  --color-line: oklch(91% 0.006 250);
+
+  --color-brand: oklch(50% 0.11 195);
+  --color-brand-soft: oklch(94.5% 0.03 195);
+  --color-on-brand: oklch(100% 0 0);
+
+  --animate-grow: grow 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(17% 0.02 255);
+
+    --color-panel: oklch(21% 0.022 255);
+    --color-soft: oklch(26% 0.024 255);
+
+    --color-foreground: oklch(95% 0.006 250);
+    --color-muted: oklch(70% 0.02 255);
+
+    --color-line: oklch(31% 0.024 255);
+
+    --color-brand: oklch(80% 0.11 195);
+    --color-brand-soft: oklch(28% 0.05 195);
+    --color-on-brand: oklch(20% 0.03 195);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+  }
+
+  section {
+    @apply rounded-2xl border border-line bg-panel/80 shadow-sm backdrop-blur-md;
+  }
+
+  h1 {
+    @apply font-display text-5xl font-semibold leading-[1.02] tracking-tight text-foreground sm:text-7xl;
+  }
+
+  h2 {
+    @apply font-display text-3xl font-semibold leading-tight tracking-tight text-foreground;
+  }
+
+  h3 {
+    @apply font-display text-lg font-semibold tracking-tight;
+  }
+
+  form {
+    @apply space-y-4;
+  }
+
+  label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted;
+  }
+
+  input {
+    @apply w-full rounded-lg border border-line bg-background py-2.5 pl-10 pr-3.5 text-sm text-foreground;
+    @apply placeholder:text-muted outline-none transition;
+    @apply focus:border-brand focus:ring-4 focus:ring-brand/20;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  ul {
+    @apply divide-y divide-line;
+  }
+
+  li {
+    @apply flex items-center gap-3 px-4 py-3 transition hover:bg-soft/60;
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+@utility u2 {
+  @apply pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 fill-muted;
+}
+
+@utility background {
+  @apply absolute inset-0 bg-size-[44px_44px];
+  @apply bg-[linear-gradient(to_right,var(--color-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-line)_1px,transparent_1px)];
+  @apply [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)];
+}
+
+@utility add {
+  @apply inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-semibold text-on-brand fill-on-brand shadow-sm transition;
+  @apply hover:bg-brand/70 active:scale-97 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/30;
+}
+
+@utility delete {
+  @apply rounded-lg p-2 fill-muted transition hover:bg-red-500/10 hover:fill-red-600 dark:hover:fill-red-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-500/20;
+}

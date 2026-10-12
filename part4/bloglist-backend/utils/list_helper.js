@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const _ = require("lodash");
 
 const dummy = (blogs) => {
   return 1;
@@ -17,7 +17,7 @@ const favoriteBlog = (blogs) => {
 const mostBlogs = (blogs) => {
   if (blogs.length === 0) return null;
 
-  const counts = _.countBy(blogs, 'author');
+  const counts = _.countBy(blogs, "author");
   const topAuthor = Object.keys(counts).reduce((a, b) =>
     counts[a] > counts[b] ? a : b
   );

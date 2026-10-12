@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Manrope", sans-serif;
+  --font-mono: "DM Mono", monospace;
+
+  /* Light */
+  --color-background: oklch(96.8% 0.008 85);
+  --color-surface: oklch(99.2% 0.004 85);
+  --color-surface-secondary: oklch(94.8% 0.01 85);
+  --color-surface-hover: oklch(93.8% 0.014 85);
+
+  --color-border: oklch(87.5% 0.012 75);
+  --color-border-strong: oklch(78% 0.015 75);
+
+  --color-text: oklch(17% 0.018 65);
+  --color-text-secondary: oklch(40% 0.018 65);
+  --color-text-muted: oklch(58% 0.015 65);
+
+  --color-accent: oklch(48% 0.21 275);
+  --color-accent-hover: oklch(41% 0.21 275);
+  --color-accent-soft: oklch(91% 0.045 275);
+
+  --color-positive: oklch(55% 0.16 155);
+  --color-positive-soft: oklch(91% 0.045 155);
+
+  /* Shadows */
+  --shadow-soft: 0 1px 1px rgb(0 0 0 / 0.03), 0 10px 30px rgb(0 0 0 / 0.045);
+
+  /* Tracking */
+  --tracking-eighteen: 0.18em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(15% 0.008 65);
+    --color-surface: oklch(18% 0.009 65);
+    --color-surface-secondary: oklch(20.5% 0.01 65);
+    --color-surface-hover: oklch(23% 0.012 65);
+
+    --color-border: oklch(28% 0.012 65);
+    --color-border-strong: oklch(36% 0.014 65);
+
+    --color-text: oklch(94% 0.008 75);
+    --color-text-secondary: oklch(71% 0.012 75);
+    --color-text-muted: oklch(50% 0.012 75);
+
+    --color-accent: oklch(72% 0.17 275);
+    --color-accent-hover: oklch(78% 0.15 275);
+    --color-accent-soft: oklch(26% 0.045 275);
+
+    --color-positive: oklch(70% 0.14 155);
+    --color-positive-soft: oklch(26% 0.04 155);
+
+    --shadow-soft: 0 1px 1px rgb(0 0 0 / 0.2), 0 15px 40px rgb(0 0 0 / 0.18);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-sans bg-background text-text min-h-screen;
+  }
+
+  header {
+    @apply pb-10 border-b border-border;
+  }
+
+  main {
+    @apply px-8 py-15 min-h-screen;
+  }
+  
+  footer {
+    @apply mt-10 border-t border-border;
+  }
+
+  h1 {
+    @apply max-w-3xl text-5xl font-extrabold;
+  }
+
+  h2 {
+    @apply mt-2 text-xl font-bold;
+  }
+
+  h3 {
+    @apply text-lg font-bold text-text;
+  }
+
+  h1, h2, h3 {
+    @apply tracking-tight;
+  }
+
+  article {
+    @apply grid grid-cols-[auto_1fr_auto] items-center gap-5 border-b border-border px-5 py-6 transition-colors cursor-pointer last:border-b-0 hover:bg-surface-hover sm:grid-cols-[70px_1fr_130px] sm:px-7 sm:py-7;
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+@utility u2 {
+  @apply font-mono;
+}
+
+@utility u3 {
+  @apply shadow-soft;
+}
+
+@utility u4 {
+  @apply flex items-center gap-2 border border-border px-2.5 py-1.5 text-xs font-medium text-text-secondary;
+}

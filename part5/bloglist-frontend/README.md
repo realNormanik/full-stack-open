@@ -11,7 +11,7 @@ part5/
 ├── bloglist-e2e-tests
 └── bloglist-frontend/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── components/
     │   │   ├── Blog.jsx
@@ -22,6 +22,7 @@ part5/
     │   │   ├── blogs.js
     │   │   └── login.js
     │   ├── App.jsx
+    │   ├── index.css
     │   └── main.jsx
     ├── tests/
     │   └── Blog.test.js
@@ -119,8 +120,8 @@ During the development of the project in Part 5, the following tasks were perfor
 - To support this, elements in the `Blog` component were assigned distinct CSS class names (e.g., `.blog-header`, `.blog-details`).
 
 ```jsx
-expect(container.querySelector('.blog-header')).toHaveTextContent('React patterns Michael Chan');
-expect(container.querySelector('.blog-details')).not.toBeVisible();
+expect(container.querySelector(".blog-header")).toHaveTextContent("React patterns Michael Chan");
+expect(container.querySelector(".blog-details")).not.toBeVisible();
 ```
 
 ### 5.14: Blog List Tests, step 2
@@ -131,11 +132,11 @@ expect(container.querySelector('.blog-details')).not.toBeVisible();
 - The test uses `userEvent` to simulate the click and then checks that hidden elements become visible.
 
 ```jsx
-const button = screen.getByText('view');
+const button = screen.getByText("view");
 await user.click(button);
 
-expect(screen.getByText('https://reactpatterns.com')).toBeVisible();
-expect(screen.getByText('likes')).toBeVisible();
+expect(screen.getByText("https://reactpatterns.com")).toBeVisible();
+expect(screen.getByText("likes")).toBeVisible();
 ```
 
 ### 5.15: Blog List Tests, step 3
@@ -158,9 +159,9 @@ expect(mockLikeHandler.mock.calls).toHaveLength(2);
 
 ```js
 {
-  title: 'New Blog',
-  author: 'Test Author',
-  url: 'https://example.com'
+  title: "New Blog",
+  author: "Test Author",
+  url: "https://example.com"
 }
 ```
 
@@ -193,6 +194,12 @@ npm run dev
 ```
 
 The application from Part 4 will be available at [http://localhost:5173](http://localhost:5173) and server is available at [http://localhost:3003](http://localhost:3003).
+
+### 🔐 Demo Login Credentials
+
+| Username     | Password      |
+| ------------ | ------------- |
+| `testuser`   | `password123` |
 
 ## 🧠 Notes
 

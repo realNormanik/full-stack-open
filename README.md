@@ -1,6 +1,6 @@
 # Full Stack Open 2024 – Learning Summary
 
-This document provides a summary of my learning experience while completing Parts 1 through 9 of the Full Stack Open course. The course focuses on modern web application development using technologies such as React, Node.js, Express, MongoDB, GraphQL, and TypeScript. Through hands-on exercises and projects, I gained practical experience in building full-stack web applications.
+This document provides a summary of my learning experience while completing Parts 1 through 13 of the **[Full Stack Open](https://fullstackopen.com/en/)** course. The course focuses on modern web application development using technologies such as React, Node.js, Express, MongoDB, GraphQL, and TypeScript. Through hands-on exercises and projects, I gained practical experience in building full-stack web applications.
 
 ## 📚 Course Overview
 

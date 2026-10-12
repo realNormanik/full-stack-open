@@ -12,9 +12,10 @@ part2/
 ├── courseinfo
 └── phonebook-frontend/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── App.jsx
+    │   ├── index.css
     │   ├── main.jsx
     │   └── personService.jsx
     ├── .gitignore

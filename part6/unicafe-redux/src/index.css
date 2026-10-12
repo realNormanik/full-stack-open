@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Albert Sans", sans-serif;
+  --font-display: "Big Shoulders Display", sans-serif;
+
+  /* Semantic colors */
+  --color-background: oklch(97.5% 0.005 245);
+
+  --color-panel: oklch(100% 0 0);
+  --color-soft: oklch(94.5% 0.008 245);
+
+  --color-foreground: oklch(20% 0.03 255);
+  --color-muted: oklch(50% 0.03 250);
+
+  --color-line: oklch(90% 0.01 245);
+
+  --color-brand: oklch(52% 0.19 245);
+  --color-brand-soft: oklch(94% 0.04 245);
+  --color-on-brand: oklch(100% 0 0);
+
+  /* Feedback colors */
+  --color-good: oklch(62% 0.18 150);
+  --color-ok: oklch(78% 0.16 80);
+  --color-bad: oklch(60% 0.22 25);
+
+  --animate-tick: tick 350ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes tick {
+    from {
+      opacity: 0;
+      transform: translateY(0.4em) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(15% 0.02 255);
+
+    --color-panel: oklch(20% 0.025 255);
+    --color-soft: oklch(26% 0.03 255);
+
+    --color-foreground: oklch(96% 0.008 245);
+    --color-muted: oklch(72% 0.03 250);
+
+    --color-line: oklch(31% 0.03 255);
+
+    --color-brand: oklch(76% 0.13 245);
+    --color-brand-soft: oklch(30% 0.07 245);
+    --color-on-brand: oklch(16% 0.03 255);
+
+    --color-good: oklch(76% 0.19 150);
+    --color-ok: oklch(84% 0.15 85);
+    --color-bad: oklch(70% 0.2 25);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+    @apply selection:bg-brand selection:text-on-brand;
+  }
+
+  section {
+    @apply rounded-3xl border border-line bg-panel;
+  }
+
+  h1 {
+    @apply font-display text-6xl font-black uppercase leading-[0.9] tracking-tight text-foreground sm:text-8xl;
+  }
+
+  h3 {
+    @apply font-display text-3xl font-bold uppercase tracking-wide text-foreground;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+@utility u2 {
+  @apply h-full w-(--share) transition-[width] duration-700;
+}
+
+@utility scanlines {
+  @apply pointer-events-none absolute inset-x-0 top-0 -z-10 h-120;
+  background-image: repeating-linear-gradient(0deg, var(--color-line) 0 1px, transparent 1px 7px);
+  mask-image: linear-gradient(to bottom, black 20%, transparent);
+}
+
+@utility card {
+  @apply rounded-2xl bg-soft p-4 sm:p-5;
+}
+
+@utility vote {
+  @apply flex flex-col items-center gap-3 rounded-3xl border border-line bg-panel px-3 py-6 font-display text-3xl font-bold uppercase tracking-wide text-foreground transition;
+  @apply hover:-translate-y-1 hover:border-(--tone) hover:bg-[color-mix(in_oklab,var(--tone)_10%,var(--color-panel))];
+  @apply active:translate-y-0 active:scale-97 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-(--tone)/30;
+}
+
+@utility restart {
+  @apply inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-muted fill-muted transition;
+  @apply hover:border-bad hover:bg-bad/10 hover:text-bad hover:fill-bad active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-bad/30;
+}

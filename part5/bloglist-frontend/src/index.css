@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Onest", sans-serif;
+  --font-display: "Unbounded", sans-serif;
+
+  /* Semantic colors */
+  --color-background: oklch(98.5% 0 0);
+
+  --color-panel: oklch(100% 0 0);
+  --color-soft: oklch(95.5% 0 0);
+
+  --color-foreground: oklch(15% 0 0);
+  --color-muted: oklch(48% 0 0);
+
+  --color-line: oklch(89% 0 0);
+
+  --color-brand: oklch(77% 0.17 65);
+  --color-brand-soft: oklch(95% 0.05 85);
+  --color-on-brand: oklch(18% 0.03 60);
+
+  --animate-shrink: shrink 5s linear both;
+
+  @keyframes shrink {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(14% 0 0);
+
+    --color-panel: oklch(18% 0 0);
+    --color-soft: oklch(23% 0 0);
+
+    --color-foreground: oklch(96% 0 0);
+    --color-muted: oklch(68% 0 0);
+
+    --color-line: oklch(29% 0 0);
+
+    --color-brand: oklch(79% 0.16 70);
+    --color-brand-soft: oklch(30% 0.05 70);
+    --color-on-brand: oklch(17% 0.03 60);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+    @apply selection:bg-brand selection:text-on-brand;
+  }
+
+  section {
+    @apply rounded-md border border-line bg-panel;
+  }
+
+  h1 {
+    @apply font-display text-4xl font-bold leading-[1.08] tracking-tight text-balance text-foreground sm:text-6xl;
+  }
+
+  h2 {
+    @apply font-display text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl;
+  }
+
+  h3 {
+    @apply font-display text-base font-semibold tracking-tight;
+  }
+
+  form {
+    @apply space-y-6;
+  }
+
+  label {
+    @apply mb-1 block text-sm font-medium text-muted;
+  }
+
+  input {
+    @apply w-full rounded-none border-0 border-b-2 border-line bg-transparent px-0 py-2.5 text-base text-foreground;
+    @apply placeholder:text-muted outline-none transition;
+    @apply focus:border-brand;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+@utility login {
+  @apply inline-flex w-full items-center justify-between gap-2 rounded-md bg-brand px-4 py-3.5 text-sm font-semibold text-on-brand fill-on-brand transition;
+  @apply hover:bg-foreground hover:text-background hover:fill-background active:scale-97 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/40;
+}
+
+@utility logout {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-line px-3.5 py-2 text-sm font-semibold text-foreground fill-foreground transition;
+  @apply hover:border-foreground hover:bg-foreground hover:text-background hover:fill-background active:scale-97 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/40;
+}
+
+@utility danger {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-red-500/30 px-3.5 py-2 text-sm font-semibold text-red-600 fill-red-600 transition dark:text-red-400 dark:fill-red-400;
+  @apply hover:bg-red-500 hover:text-white hover:fill-white active:scale-97 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-500/30;
+}
+
+@utility delete {
+  @apply rounded-md p-2 fill-muted transition hover:bg-red-500/10 hover:fill-red-600 dark:hover:fill-red-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-500/20;
+}

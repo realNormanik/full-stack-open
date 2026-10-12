@@ -12,9 +12,10 @@ part2/
 ├── courseinfo
 └── countries/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── App.jsx
+    │   ├── index.css
     │   └── main.jsx
     ├── .gitignore
     ├── eslint.config.js

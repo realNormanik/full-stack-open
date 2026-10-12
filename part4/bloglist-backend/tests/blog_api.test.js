@@ -1,24 +1,24 @@
-const supertest = require('supertest');
-const express = require('express');
-const { test, describe, before } = require('node:test');
+const supertest = require("supertest");
+const express = require("express");
+const { test, describe, before } = require("node:test");
 
-const Blog = require('../models/blog');
-const User = require('../models/user');
-const app = require('../index');
+const Blog = require("../models/blog");
+const User = require("../models/user");
+const app = require("../index");
 
 const router = express.Router();
 const api = supertest(app);
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   const blogs = await Blog.find({});
   res.json(blogs);
 });
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const { title, author, url, likes } = req.body;
 
   if (!title || !url) {
-    return res.status(400).json({ error: 'Title and URL are required' });
+    return res.status(400).json({ error: "Title and URL are required" });
   };
 
   const blog = new Blog({
@@ -32,24 +32,24 @@ router.post('/', async (req, res) => {
   res.status(201).json(savedBlog);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
     const deletedBlog = await Blog.findByIdAndDelete(id);
 
     if (!deletedBlog) {
-      return res.status(404).json({ error: 'Blog not found' });
+      return res.status(404).json({ error: "Blog not found" });
     }
 
     res.status(204).end(); // No content
   } catch (error) {
     console.error(error); // Log the error for debugging
-    res.status(500).json({ error: 'An error occurred while deleting the blog' });
+    res.status(500).json({ error: "An error occurred while deleting the blog" });
   };
 });
 
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { likes } = req.body;
 
@@ -61,27 +61,27 @@ router.put('/:id', async (req, res) => {
     );
 
     if (!updatedBlog) {
-      return res.status(404).json({ error: 'Blog not found' });
+      return res.status(404).json({ error: "Blog not found" });
     };
     
     res.status(200).json(updatedBlog);
   } catch (error) {
     console.error(error); // Log the error for debugging
-    res.status(500).json({ error: 'An error occurred while updating the blog' });
+    res.status(500).json({ error: "An error occurred while updating the blog" });
   };
 });
 
-describe('Blog API', () => {
+describe("Blog API", () => {
   before(async () => {
     await Blog.deleteMany({});
     await User.deleteMany({});
   });
 
-  test('fails to add blog without token', async () => {
-    const newBlog = { title: 'No Token Blog', author: 'Anonymous', url: 'https://notoken.com' };
+  test("fails to add blog without token", async () => {
+    const newBlog = { title: "No Token Blog", author: "Anonymous", url: "https://notoken.com" };
 
     await api
-      .post('/api/blogs')
+      .post("/api/blogs")
       .send(newBlog)
       .expect(401);
   });

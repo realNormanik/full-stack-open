@@ -4,16 +4,16 @@ const Notification = () => {
   const notification = useSelector(state => state.notification);
   if (!notification) return null;
 
-  const style = {
-    border: "solid",
-    padding: 10,
-    borderWidth: 1,
-    marginBottom: 10
-  };
-
   return (
-    <div style={style}>
-      {notification}
+    <div
+      role="status"
+      className="fixed left-1/2 top-5 z-50 flex max-w-[calc(100%-2rem)] -translate-x-1/2 origin-top items-center gap-3 rounded-full bg-foreground py-2.5 pl-3 pr-5 text-sm font-semibold text-background shadow-2xl motion-safe:animate-pop"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25" height="25" className="fill-brand">
+        <path d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM438 209.7C427.3 201.9 412.3 204.3 404.5 215L285.1 379.2L233 327.1C223.6 317.7 208.4 317.7 199.1 327.1C189.8 336.5 189.7 351.7 199.1 361L271.1 433C276.1 438 282.9 440.5 289.9 440C296.9 439.5 303.3 435.9 307.4 430.2L443.3 243.2C451.1 232.5 448.7 217.5 438 209.7z" />
+      </svg>
+
+      <span className="min-w-0">{notification}</span>
     </div>
   );
 };

@@ -11,7 +11,7 @@ part6/
 ├── unicafe-redux
 └── redux-anecdotes/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── components/
     │   │   ├── AnecdoteForm.jsx
@@ -26,6 +26,7 @@ part6/
     │   ├── services/
     │   │   └── anecdotes.js
     │   ├── App.jsx
+    │   ├── index.css
     │   ├── main.jsx
     │   └── store.js
     ├── .babelrc

@@ -12,10 +12,11 @@ part1/
 ├── courseinfo
 └── unicafe/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── App.jsx
     │   ├── Button.jsx
+    │   ├── index.css
     │   ├── main.jsx
     │   ├── StatisticLine.jsx
     │   └── Statistics.jsx
