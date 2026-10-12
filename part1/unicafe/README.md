@@ -101,6 +101,11 @@ npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part1-unicafe-amber.vercel.app/)
+
 ## 🧠 Notes
 
 - Only the final version of the app (after **1.11**) is required for submission.

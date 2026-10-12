@@ -92,6 +92,11 @@ npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part1-courseinfo-zeta.vercel.app/)
+
 ## 🧠 Notes
 
 - Only the final version of the application after Exercise **1.5** is submitted.

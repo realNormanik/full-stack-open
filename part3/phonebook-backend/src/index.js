@@ -7,9 +7,20 @@ const personsRouter = require("../controllers/persons");
 
 const app = express();
 
-mongoose.connect(`${process.env.MONGODB_URI}`)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch(err => console.error("Error connecting to MongoDB:", err));
+const uri = process.env.MONGODB_URI;
+
+console.log("Mongo URI configured:", Boolean(uri));
+console.log("Mongo URI uses SRV:", uri?.startsWith("mongodb+srv://"));
+
+if (!uri) {
+  throw new Error("Missing MONGODB_URI environment variable");
+};
+
+mongoose.connect(uri)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => {
+    console.error("MongoDB connection failed:", err.message);
+  });
 
 app.use(cors());
 app.use(express.json());

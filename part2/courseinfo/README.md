@@ -110,6 +110,11 @@ npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part2-courseinfo-psi.vercel.app/)
+
 ## 🧠 Notes
 
 - Submit only after completing all the exercises you wish to include from this part—no changes can be made afterward.

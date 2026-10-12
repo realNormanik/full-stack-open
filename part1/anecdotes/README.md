@@ -81,6 +81,11 @@ npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part1-anecdotes-nu.vercel.app/)
+
 ## 🧠 Notes
 
 - This project is a part of the Full Stack Open 2024 course by the University of Helsinki.

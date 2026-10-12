@@ -119,6 +119,11 @@ export VITE_WEATHER_API_KEY=your_api_key && npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part2-countries-iota.vercel.app/)
+
 ## 🧠 Notes
 
 - Make sure not to commit your `.env` or API keys.
