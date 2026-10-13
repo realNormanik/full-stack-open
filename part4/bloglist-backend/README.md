@@ -180,8 +180,8 @@ Create a `.env` file in the root directory with the following content:
 ```env
 PORT=3001
 MONGODB_URI=your_mongodb_uri
-TEST_MONGODB_URI=your_test_mongodb_uri
-SECRET=your_jwt_secret
+MONGODB_NAME=your_test_mongodb_cluster
+JWT_SECRET=your_jwt_secret
 ```
 
 5. Start the development server:
@@ -191,6 +191,11 @@ npm run dev
 ```
 
 The server is available at [http://localhost:3003](http://localhost:3003).
+
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part4-bloglist-backend.vercel.app/)
 
 ## 🧠 Notes
 

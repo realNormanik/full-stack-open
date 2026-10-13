@@ -9,8 +9,19 @@ const loginRouter = require("./controllers/login");
 
 const app = express();
 
-mongoose.connect(`${process.env.MONGODB_URI}`)
-  .then(() => console.log("Connected to MongoDB"))
+const uri = process.env.MONGODB_URI;
+const dbName = process.env.MONGODB_NAME;
+
+if (!uri) {
+  throw new Error("Missing MONGODB_URI environment variable");
+};
+
+if (!dbName) {
+  throw new Error("Missing MONGODB_NAME environment variable");
+};
+
+mongoose.connect(uri, { dbName })
+  .then(() => console.log(`Connected to MongoDB database: ${dbName}`))
   .catch(err => console.error("Error connecting to MongoDB:", err));
 
 app.use(cors());
@@ -20,10 +31,12 @@ app.use("/api/blogs", blogRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
 
-const PORT = process.env.PORT || 3003;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
 module.exports = app;
+
+if (require.main === module) {
+  const PORT = process.env.PORT || 3003;
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+};

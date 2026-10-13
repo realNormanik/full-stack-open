@@ -288,6 +288,11 @@ The script uses the database credentials configured in `.env`.
 
 The command-line script must support the selected argument format in `src/mongo.js` to add entries. Check its implementation before supplying a name and number.
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part3-phonebook-backend.vercel.app/)
+
 ## 🧠 Notes
 
 - MongoDB Atlas must be configured to accept connections from your environment.
