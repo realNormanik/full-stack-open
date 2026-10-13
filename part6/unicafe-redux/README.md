@@ -114,6 +114,11 @@ npm run dev
 
 The application is available at [http://localhost:5173](http://localhost:5173).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part6-unicafe-redux.vercel.app/)
+
 ## 🧠 Notes
 
 - `deep-freeze` ensures the reducer does not mutate the original state - a core Redux principle.
