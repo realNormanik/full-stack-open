@@ -1,0 +1,1 @@
+A project created solely to ensure that the redux-anecdotes application runs correctly on the Vercel server.
