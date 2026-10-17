@@ -65,6 +65,10 @@
     @apply selection:bg-brand selection:text-on-brand;
   }
 
+  header {
+    @apply flex flex-wrap items-center justify-center gap-2 rounded-4xl border border-line bg-panel p-2 pl-6 sm:justify-between;
+  }
+
   section {
     @apply rounded-4xl border border-line bg-panel;
   }
@@ -111,10 +115,6 @@
 
 @utility bento {
   @apply grid gap-4;
-}
-
-@utility bar {
-  @apply flex flex-wrap items-center justify-center gap-2 rounded-4xl border border-line bg-panel p-2 pl-6 sm:justify-between ;
 }
 
 /* Tiles */

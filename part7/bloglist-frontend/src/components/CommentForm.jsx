@@ -11,14 +11,14 @@ const CommentForm = ({ id, onAddComment }) => {
   };
 
   return(
-    <form className="p-3 border rounded bg-light mb-4" onSubmit={handleSubmit}>
-      <h5 className="mb-3">Add a Comment</h5>
+    <form className="card-soft" onSubmit={handleSubmit}>
+      <h3>Add a comment</h3>
 
-      <div className="mb-3">
-        <label htmlFor="blog-comment" className="form-label">Comment</label>
+      <div className="field">
+        <label htmlFor="blog-comment" className="label">Comment</label>
         <input
           id="blog-comment"
-          className="form-control"
+          className="input"
           type="text"
           value={newBlogComment}
           onChange={({ target }) => setNewBlogComment(target.value)}
@@ -26,7 +26,7 @@ const CommentForm = ({ id, onAddComment }) => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="create self-start">
         Create
       </button>
     </form>

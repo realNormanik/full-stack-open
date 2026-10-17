@@ -1,8 +1,12 @@
 const Loading = () => {
   return(
-    <div className="container py-4">
-      <p>Loading...</p>
-    </div>
+    <section className="page">
+      <p className="notice" role="status">
+        <span className="spinner" />
+
+        Loading...
+      </p>
+    </section>
   );
 };
 

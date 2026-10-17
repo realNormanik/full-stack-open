@@ -1,7 +1,8 @@
-import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import "./index.css";
 
 import App from "./App";
 import store from "./store";
@@ -13,7 +14,7 @@ import Notification from "./components/Notification";
 
 const Main = () => {
   return (
-    <>
+    <main>
       <Header />
       <Notification />
       <Routes>
@@ -22,7 +23,7 @@ const Main = () => {
         <Route path="/users/:id" element={<UserDetails />} />
         <Route path="/blogs/:id" element={<BlogDetails />} />
       </Routes>
-    </>
+    </main>
   );
 };
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = `${import.meta.env.VITE_HOST}/api/blogs`;
+const baseUrl = `${import.meta.env.VITE_API_URL}/api/blogs`;
 
 // Fetch blog by ID
 const getBlog = async (postId) => {

@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Hanken Grotesk", sans-serif;
+  --font-display: "Fraunces", serif;
+
+  /* Semantic colors */
+  --color-background: oklch(97.6% 0.01 90);
+
+  --color-panel: oklch(100% 0 0);
+  --color-soft: oklch(94.5% 0.015 90);
+
+  --color-foreground: oklch(22% 0.02 70);
+  --color-muted: oklch(50% 0.025 70);
+
+  --color-line: oklch(90% 0.015 90);
+
+  --color-brand: oklch(52% 0.12 70);
+  --color-brand-ink: oklch(24% 0.03 60);
+  --color-brand-soft: oklch(94.5% 0.05 90);
+  --color-on-brand: oklch(100% 0 0);
+
+  --color-success: oklch(55% 0.2 145);
+
+  --color-danger: oklch(55% 0.2 25);
+  --color-danger-soft: oklch(95% 0.03 25);
+
+  --animate-rise: rise 450ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(16.5% 0.012 70);
+
+    --color-panel: oklch(21% 0.015 70);
+    --color-soft: oklch(26% 0.018 70);
+
+    --color-foreground: oklch(95.5% 0.01 90);
+    --color-muted: oklch(70% 0.025 80);
+
+    --color-line: oklch(30.5% 0.02 70);
+
+    --color-brand: oklch(80% 0.13 82);
+    --color-brand-ink: oklch(12.5% 0.01 70);
+    --color-brand-soft: oklch(29% 0.05 75);
+    --color-on-brand: oklch(19% 0.04 70);
+
+    --color-success: oklch(72% 0.17 145);
+
+    --color-danger: oklch(72% 0.17 25);
+    --color-danger-soft: oklch(30% 0.07 25);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+  }
+
+  h1 {
+    @apply font-display text-5xl font-extrabold leading-[0.98] tracking-tight text-white/80 sm:text-7xl;
+  }
+
+  h2 {
+    @apply font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl;
+  }
+
+  h3 {
+    @apply font-display text-xl font-semibold tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-brand text-on-brand;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 1ms !important;
+      transition-duration: 1ms !important;
+    }
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+/* Layout */
+@utility page {
+  @apply mx-auto flex w-full max-w-5xl flex-col gap-6 px-5 py-8 sm:py-12;
+}
+
+@utility bento {
+  @apply grid animate-rise grid-cols-1 gap-3 sm:gap-4 md:grid-cols-6;
+}
+
+@utility stack {
+  @apply flex flex-col gap-3;
+}
+
+/* Header */
+@utility topbar {
+  @apply sticky top-0 z-10 border-b border-line bg-background/80 backdrop-blur-md;
+}
+
+@utility bar {
+  @apply mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-5 py-3;
+}
+
+@utility logo {
+  @apply font-display text-xl font-extrabold tracking-tight sm:text-2xl;
+}
+
+@utility nav {
+  @apply flex items-center gap-1 sm:gap-2;
+}
+
+@utility navlink {
+  @apply inline-flex size-10 items-center justify-center rounded-full text-muted transition-colors duration-200 hover:bg-soft hover:text-foreground;
+}
+
+/* Tiles */
+@utility card {
+  @apply flex flex-col gap-5 rounded-4xl border border-line bg-panel p-6 sm:p-8;
+}
+
+@utility card-soft {
+  @apply flex flex-col gap-5 rounded-4xl bg-soft p-6 sm:p-8;
+}
+
+@utility card-ink {
+  @apply flex flex-col justify-between gap-8 rounded-4xl bg-brand-ink p-6 text-white sm:p-10;
+}
+
+@utility card-brand {
+  @apply flex flex-col justify-between gap-6 rounded-4xl bg-brand p-6 text-on-brand sm:p-8;
+}
+
+/* Text */
+@utility headline {
+  @apply font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl;
+}
+
+@utility label {
+  @apply text-sm font-medium text-muted;
+}
+
+@utility value {
+  @apply font-display text-6xl font-extrabold leading-none tracking-tight;
+}
+
+@utility chip {
+  @apply inline-flex shrink-0 items-center rounded-full bg-brand-soft px-4 py-2 text-sm font-semibold text-brand;
+}
+
+@utility empty {
+  @apply rounded-3xl border border-dashed border-line px-5 py-8 text-center text-sm font-medium text-muted;
+}
+
+@utility link {
+  @apply font-semibold text-brand underline-offset-4 hover:underline;
+}
+
+@utility link-title {
+  @apply block truncate font-display text-lg font-semibold tracking-tight text-foreground transition-colors duration-200 hover:text-brand;
+}
+
+@utility link-ink {
+  @apply break-all text-sm font-medium text-white/80 underline-offset-4 transition-colors duration-200 hover:text-white hover:underline;
+}
+
+/* Forms */
+@utility field {
+  @apply flex flex-col gap-1.5;
+}
+
+@utility input {
+  @apply w-full rounded-full border border-line bg-background px-5 py-3 text-base font-medium text-foreground outline-none transition-colors duration-200 placeholder:text-muted focus:border-brand;
+}
+
+@utility create {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold text-on-brand transition duration-200 hover:opacity-90 active:scale-95;
+}
+
+@utility ghost {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-line bg-panel px-6 py-3 text-sm font-bold text-foreground transition duration-200 hover:bg-soft active:scale-95;
+}
+
+@utility danger {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-danger-soft px-4 py-2 text-sm font-bold text-danger transition duration-200 hover:opacity-80 active:scale-95;
+}
+
+@utility vote {
+  @apply inline-flex cursor-pointer items-center gap-2 rounded-full bg-brand-soft px-5 py-2.5 text-sm font-bold text-brand transition duration-200 hover:opacity-80 active:scale-95;
+}
+
+/* List rows */
+@utility row {
+  @apply flex animate-rise flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-3xl bg-soft px-8 py-4;
+}
+
+@utility avatar {
+  @apply flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-soft font-display text-lg font-bold text-brand;
+}
+
+/* Togglable */
+@utility reveal {
+  @apply max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-in-out;
+
+  &[data-open="true"] {
+    @apply max-h-[500px] opacity-100;
+  }
+}
+
+/* Status */
+@utility toast {
+  @apply fixed bottom-6 left-1/2 z-20 w-max max-w-[90vw] -translate-x-1/2 animate-rise rounded-full px-6 py-3 text-sm font-semibold shadow-xl;
+}
+
+@utility toast-success {
+  @apply bg-success text-on-brand;
+}
+
+@utility toast-error {
+  @apply bg-danger text-on-brand;
+}
+
+@utility spinner {
+  @apply size-5 animate-spin rounded-full border-2 border-line border-t-brand;
+}
+
+@utility notice {
+  @apply flex items-center justify-center gap-3 rounded-4xl border border-line bg-panel px-6 py-5 text-base font-medium text-foreground;
+}

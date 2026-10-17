@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Menu() {
   return (
-    <header className="bar">
+    <header>
       <span className="font-display text-xl font-black tracking-tight">
         anecdotes<span className="text-brand">.</span>
       </span>

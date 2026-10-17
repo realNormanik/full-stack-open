@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import Loading from "./Loading";
 import CommentForm from "./CommentForm";
@@ -85,61 +85,58 @@ const BlogDetails = () => {
   };
 
   return (
-    <div className="container py-4 d-flex gap-4">
-      <div className="w-100">
-        <div className="border rounded p-3">
-          <h1 className="card-title mb-3">{blog.title}</h1>
+    <section className="page">
+      <div className="bento">
+        <article className="card-ink md:col-span-6">
+          <div className="stack">
+            <h1 className="headline">{blog.title}</h1>
 
-          <p className="mb-3">
-            <a href={blog.url} className="text-decoration-none" target="_blank" rel="noopener noreferrer">
+            <a href={blog.url} className="link-ink" target="_blank" rel="noopener noreferrer">
               {blog.url}
             </a>
-          </p>
+          </div>
 
-          <div className="d-flex justify-content-between align-items-center">
-            <div className="d-flex align-items-center gap-2">
-              <p className="text-muted mb-0">Likes:</p>
-              <button onClick={handleLike} className="btn btn-outline-primary gap-2 d-flex align-items-center">
-                {likes}
-                <FontAwesomeIcon icon={faThumbsUp} />
-              </button>
-            </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <button onClick={handleLike} className="vote" aria-label="Like this blog">
+              <FontAwesomeIcon icon={faThumbsUp} />
+              {likes}
+            </button>
 
-            <p className="text-muted mb-0">
-              Added by:{" "}
-              <Link to={`/users/${blog.user._id}`} className="text-decoration-none">
+            <p className="text-sm font-medium text-white/70">
+              Added by{" "}
+              <Link to={`/users/${blog.user._id}`} className="link-ink">
                 {blog.user.username}
               </Link>
             </p>
 
             {user && user.username === blog.user.username && (
-              <button onClick={handleDelete} className="btn btn-outline-danger">
-                <FontAwesomeIcon icon={faTrash} />
+              <button onClick={handleDelete} className="danger ml-auto" aria-label="Delete this blog">
+                <FontAwesomeIcon icon={faTrashCan} />
               </button>
             )}
           </div>
-        </div>
-      </div>
+        </article>
 
-      <div className="w-100">
-        <div>
-          <h3>Comments</h3>
+        <div className="card md:col-span-6">
+          <h2>Comments</h2>
+
           <CommentForm id={id} onAddComment={handleAddComment} />
+
           {blog.comments && blog.comments.length > 0 ? (
-            <ul className="list-group mt-3 gap-2">
+            <ul className="stack">
               {blog.comments.map(comment => (
-                <li key={comment._id} className="list-group-item d-flex justify-content-between align-items-center border rounded">
-                  {comment.content}
-                  <small className="text-muted">{new Date(comment.createdAt).toLocaleString()}</small>
+                <li key={comment._id} className="row">
+                  <p className="font-medium">{comment.content}</p>
+                  <small className="label">{new Date(comment.createdAt).toLocaleString()}</small>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-muted mt-3">No comments yet.</p>
+            <p className="empty">No comments yet.</p>
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

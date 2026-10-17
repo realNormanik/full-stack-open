@@ -19,31 +19,32 @@ const UsersList = () => {
   };
 
   return (
-    <div className="container py-4">
-      <h2>Users</h2>
-      <table className="w-50">
-        <thead>
-          <tr>
-            <th>
-              <p className="text-muted mb-0 fw-normal">Name</p>
-            </th>
-            <th>
-              <p className="text-muted mb-0 fw-normal">Blogs created</p>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+    <section className="page">
+      <div className="card animate-rise">
+        <h2>Users</h2>
+
+        <div className="stack">
+          <div className="flex justify-between px-5">
+            <p className="label">Name</p>
+            <p className="label">Blogs created</p>
+          </div>
+
           {users.map((user) => (
-            <tr key={user.id}>
-              <td>
-                <Link to={`/users/${user.id}`} className="text-decoration-none">{user.username}</Link>
-              </td>
-              <td>{user.posts.length}</td>
-            </tr>
+            <article key={user.id} className="row px-5">
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="avatar" aria-hidden="true">
+                  {user.username?.charAt(0).toUpperCase()}
+                </span>
+                <Link to={`/users/${user.id}`} className="link-title">
+                  {user.username}
+                </Link>
+              </div>
+              <span className="chip">{user.posts.length}</span>
+            </article>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

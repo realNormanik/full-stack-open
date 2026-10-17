@@ -15,12 +15,12 @@ const BlogForm = ({ onAddBlog }) => {
   };
 
   return (
-    <form className="p-4 border rounded bg-light" onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <label htmlFor="blog-title" className="form-label">Title</label>
+    <form className="stack" onSubmit={handleSubmit}>
+      <div className="field">
+        <label htmlFor="blog-title" className="label">Title</label>
         <input
           id="blog-title"
-          className="form-control"
+          className="input"
           type="text"
           value={newBlogTitle}
           onChange={({ target }) => setNewBlogTitle(target.value)}
@@ -28,11 +28,11 @@ const BlogForm = ({ onAddBlog }) => {
         />
       </div>
 
-      <div className="mb-3">
-        <label htmlFor="blog-author" className="form-label">Author</label>
+      <div className="field">
+        <label htmlFor="blog-author" className="label">Author</label>
         <input
           id="blog-author"
-          className="form-control"
+          className="input"
           type="text"
           value={newBlogAuthor}
           onChange={({ target }) => setNewBlogAuthor(target.value)}
@@ -40,11 +40,11 @@ const BlogForm = ({ onAddBlog }) => {
         />
       </div>
 
-      <div className="mb-3">
-        <label htmlFor="blog-url" className="form-label">URL</label>
+      <div className="field">
+        <label htmlFor="blog-url" className="label">URL</label>
         <input
           id="blog-url"
-          className="form-control"
+          className="input"
           type="url"
           value={newBlogUrl}
           onChange={({ target }) => setNewBlogUrl(target.value)}
@@ -52,7 +52,7 @@ const BlogForm = ({ onAddBlog }) => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="create">
         Create
       </button>
     </form>

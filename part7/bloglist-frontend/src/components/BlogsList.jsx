@@ -51,33 +51,37 @@ const BlogsList = () => {
   };
 
   return (
-    <div className="container py-4 d-flex gap-4">
-      <div className="w-100">
-        <h4 className="mb-3">Add New Blog</h4>
+    <section className="page">
+      <div className="bento items-start">
+        <div className="card-soft md:col-span-2">
+          <h2>Add new blog</h2>
 
-        <div className="mb-4">
           <Togglable>
             <BlogForm onAddBlog={handleAddBlog} />
           </Togglable>
         </div>
-      </div>
 
-      <div className="w-100">
-        <h4 className="mb-3">All Blogs</h4>
-      
-        <div className="d-flex flex-column gap-3">
-          {Array.isArray(blogs) &&
-            blogs
-              .sort((a, b) => b.likes - a.likes)
-              .map((blog) => (
-                <Blog
-                  key={blog._id}
-                  blog={blog}
-                />
-              ))}
+        <div className="card md:col-span-4">
+          <h2>All blogs</h2>
+
+          <div className="stack">
+            {Array.isArray(blogs) && blogs.length === 0 && (
+              <p className="empty">No blogs yet.</p>
+            )}
+
+            {Array.isArray(blogs) &&
+              blogs
+                .sort((a, b) => b.likes - a.likes)
+                .map((blog) => (
+                  <Blog
+                    key={blog._id}
+                    blog={blog}
+                  />
+                ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

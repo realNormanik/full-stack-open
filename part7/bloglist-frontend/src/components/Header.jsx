@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListUl, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faListUl, faUsers, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 import { logoutUser, setUser } from "../reducers/userReducer";
 import { setNotification } from "../reducers/notificationReducer";
@@ -32,35 +32,30 @@ const Header = () => {
   };
 
   return (
-    <div
-      style={{ borderRadius: "0 0 6px 6px" }}
-      className="container py-3 d-flex justify-content-between border-start border-end border-bottom"
-    >
-      <h2 className="mb-0">Blogs app</h2>
+    <header className="topbar">
+      <div className="bar">
+        <h2 className="logo">Blogs app</h2>
 
-      {user && (
-        <nav className="d-flex">
-          <ul className="nav align-items-center">
-            <li className="nav-item">
-              <Link to="/" className="nav-link"><FontAwesomeIcon icon={faListUl} /></Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/users" className="nav-link"><FontAwesomeIcon icon={faUsers} /></Link>
-            </li>
-            <li className="nav-item">
-              <span className="nav-link disabled">
-                {user?.username ? `${user.username} is logged in` : "No user is logged in"}
-              </span>
-            </li>
-            <li className="nav-item">
-              <button onClick={handleLogout} className="btn btn-outline-danger">
-                Logout
-              </button>
-            </li>
-          </ul>
-        </nav>
-      )}
-    </div>
+        {user && (
+          <nav className="nav">
+            <Link to="/" className="navlink" aria-label="Blogs">
+              <FontAwesomeIcon icon={faListUl} />
+            </Link>
+            <Link to="/users" className="navlink" aria-label="Users">
+              <FontAwesomeIcon icon={faUsers} />
+            </Link>
+            <span className="chip hidden sm:inline-flex">
+              {user?.username ? `${user.username} is logged in` : "No user is logged in"}
+            </span>
+            <button onClick={handleLogout} className="danger">
+              <FontAwesomeIcon icon={faArrowRightFromBracket} />
+
+              Logout
+            </button>
+          </nav>
+        )}
+      </div>
+    </header>
   );
 };
 

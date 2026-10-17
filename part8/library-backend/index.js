@@ -13,7 +13,9 @@ const { createYoga, createSchema } = require("graphql-yoga");
 
 const { Author, Book, User } = require("./models");
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ama5n.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.DB_NAME}`)
+mongoose.connect(process.env.MONGODB_URI, {
+  dbName: process.env.MONGODB_NAME,
+})
   .then(() => console.log("Connected to MongoDB"))
   .catch(err => console.error("Error connecting to MongoDB:", err));
 

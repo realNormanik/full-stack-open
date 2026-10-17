@@ -11,7 +11,6 @@ const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -26,39 +25,41 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="container py-4 d-grid justify-content-center">
-      <h2 className="mb-4 text-center">Log in to the application</h2>
+    <section className="page items-center">
+      <div className="card w-full max-w-md animate-rise">
+        <h2>Log in to the application</h2>
 
-      <form onSubmit={handleLogin} className="p-4 border rounded bg-light" style={{ maxWidth: '400px' }}>
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">Username</label>
-          <input
-            id="username"
-            type="text"
-            className="form-control"
-            value={username}
-            onChange={({ target }) => setUsername(target.value)}
-            required
-          />
-        </div>
+        <form onSubmit={handleLogin} className="stack">
+          <div className="field">
+            <label htmlFor="username" className="label">Username</label>
+            <input
+              id="username"
+              type="text"
+              className="input"
+              value={username}
+              onChange={({ target }) => setUsername(target.value)}
+              required
+            />
+          </div>
 
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input
-            id="password"
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-            required
-          />
-        </div>
+          <div className="field">
+            <label htmlFor="password" className="label">Password</label>
+            <input
+              id="password"
+              type="password"
+              className="input"
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
+              required
+            />
+          </div>
 
-        <button type="submit" className="btn btn-primary w-100">
-          Login
-        </button>
-      </form>
-    </div>
+          <button type="submit" className="create mt-4 w-full">
+            Login
+          </button>
+        </form>
+      </div>
+    </section>
   );
 };
 

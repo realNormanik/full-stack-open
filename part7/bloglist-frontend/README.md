@@ -13,7 +13,7 @@ part7/
 ├── routed-anecdotes
 └── bloglist-frontend/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── components/
     │   │   ├── Blog.jsx
@@ -37,6 +37,7 @@ part7/
     │   │   ├── login.js
     │   │   └── users.js
     │   ├── App.jsx
+    │   ├── index.css
     │   ├── main.jsx
     │   └── store.js
     ├── .eslintrc.cjs

@@ -178,37 +178,44 @@ app.delete(
 app.get(
   "/api/persons",
   asyncHandler(async (req, res) => {
-    const persons = await Person.find({})
-      .select("-_id id name number")
-      .sort({ id: 1 })
-      .lean();
+    const persons = await Person.find({}).select("-_id id name number").sort({ id: 1 }).lean();
 
     res.json(persons);
   })
 );
 
-// GET /api/persons/:id
-// Fetch one person
-app.get(
-  "/api/persons/:id",
+// POST /api/persons
+// Create a person
+app.post(
+  "/api/persons",
   asyncHandler(async (req, res) => {
-    const id = Number(req.params.id);
+    const name = typeof req.body?.name === "string" ? req.body.name.trim() : "";
+    const number = typeof req.body?.number === "string" ? req.body.number.trim() : "";
 
-    if (!Number.isSafeInteger(id) || id < 1) {
+    if (!name) {
       return res.status(400).json({
-        error: "Invalid person ID",
+        error: "Name is required",
       });
     };
 
-    const person = await Person.findOne({ id }).select("-_id id name number").lean();
-
-    if (!person) {
-      return res.status(404).json({
-        error: "Person not found",
+    if (!number) {
+      return res.status(400).json({
+        error: "Number is required",
       });
     };
 
-    res.json(person);
+    const id = await getNextId(Person, "persons");
+    const person = await Person.create({
+      id,
+      name,
+      number,
+    });
+
+    res.status(201).json({
+      id: person.id,
+      name: person.name,
+      number: person.number,
+    });
   })
 );
 
@@ -223,7 +230,7 @@ app.delete(
       return res.status(400).json({
         error: "Invalid person ID",
       });
-    }
+    };
 
     const person = await Person.findOneAndDelete({ id });
 

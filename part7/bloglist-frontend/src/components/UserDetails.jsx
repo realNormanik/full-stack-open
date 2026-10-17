@@ -46,37 +46,42 @@ const UserDetails = () => {
   };
 
   return (
-    <div className="container py-4 d-flex gap-4">
-      <div className="w-100">
-        <h4>User Details</h4>
-        <p><span className="text-muted mb-0">Name:</span> {user.name}</p>
-        <p><span className="text-muted mb-0">Username:</span> {user.username}</p>
-        <p><span className="text-muted mb-0">Blogs created:</span> {user.created}</p>
-      </div>
+    <section className="page">
+      <div className="bento">
+        <article className="card-ink md:col-span-4">
+          <p className="text-sm font-medium opacity-70">User details</p>
+          <div className="stack">
+            <h1 className="headline">{user.name}</h1>
+            <p className="text-base font-medium text-white/70">@{user.username}</p>
+          </div>
+        </article>
 
-      <div className="w-100">
-        <h4 className="mb-3">Blogs:</h4>
-        {error && <p style={{ color: "red" }}>Error: {error}</p>}
-      
-        <ul className="d-flex flex-column gap-3 ps-0 mb-0">
+        <article className="card-brand md:col-span-2">
+          <p className="text-sm font-medium opacity-80">Blogs created</p>
+          <p className="value">{user.created}</p>
+        </article>
+
+        <div className="card md:col-span-6">
+          <h2>Blogs</h2>
+
+          {error && <p className="text-sm font-semibold text-danger">Error: {error}</p>}
+
           {blogs.length > 0 ? (
-            blogs.map((blog) => (
-              <li className="d-block" key={blog._id}>
-                <div className="blog card border p-2">
-                  <div className="card-body p-2">
-                    <Link to={`/blogs/${blog._id}`} className="text-decoration-none text-primary">
-                      <h5 className="card-title mb-0">{blog.title}</h5>
-                    </Link>
-                  </div>
-                </div>
-              </li>
-            ))
+            <ul className="stack">
+              {blogs.map((blog) => (
+                <li key={blog._id} className="row">
+                  <Link to={`/blogs/${blog._id}`} className="link-title">
+                    {blog.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           ) : (
-            <p>No blogs available.</p>
+            <p className="empty">No blogs available.</p>
           )}
-        </ul>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
