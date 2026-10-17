@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListUl, faUsers, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +9,7 @@ import { setNotification } from "../reducers/notificationReducer";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -29,6 +30,8 @@ const Header = () => {
     dispatch(logoutUser());
     localStorage.removeItem("user");
     dispatch(setNotification("Logout successfully.", "success"));
+
+    navigate("/");
   };
 
   return (
