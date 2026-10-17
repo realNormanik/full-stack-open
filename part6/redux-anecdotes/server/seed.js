@@ -30,7 +30,7 @@ const anecdoteSchema = new mongoose.Schema(
 
 const Anecdote = mongoose.model("Anecdote", anecdoteSchema);
 
-// Początkowe dane
+// Initial data
 const anecdotes = [
   {
     content: "If it hurts, do it more often",
@@ -81,40 +81,33 @@ async function seed() {
 
     if (!mongoUri) {
       throw new Error("Missing MONGODB_URI in .env");
-    }
+    };
 
     if (!mongoName) {
       throw new Error("Missing MONGODB_NAME in .env");
-    }
+    };
 
-    await mongoose.connect(mongoUri, {
-      dbName: mongoName,
-    });
+    await mongoose.connect(mongoUri, { dbName: mongoName, });
 
-    console.log(
-      `Connected to MongoDB database: ${mongoName}`
-    );
+    console.log(`Connected to MongoDB database: ${mongoName}`);
 
     const count = await Anecdote.countDocuments();
 
     if (count > 0) {
-      console.log(
-        `Database already contains ${count} anecdotes. No changes made.`
-      );
+      console.log(`Database already contains ${count} anecdotes. No changes made.`);
+
       return;
-    }
+    };
 
     await Anecdote.insertMany(anecdotes);
 
-    console.log(
-      `Successfully imported ${anecdotes.length} anecdotes.`
-    );
+    console.log(`Successfully imported ${anecdotes.length} anecdotes.`);
   } finally {
     if (mongoose.connection.readyState !== 0) {
       await mongoose.disconnect();
-    }
-  }
-}
+    };
+  };
+};
 
 seed().catch((error) => {
   console.error("Seed failed:", error);

@@ -1,4 +1,4 @@
-# Full Stack Open 2024 - Part 5: Routed Anecdotes
+# Full Stack Open 2024 - Part 7: Routed Anecdotes
 
 This project is a simple Single Page Application (SPA) built with React, which allows users to browse, view, and create anecdotes. It has been incrementally enhanced following the exercise steps **7.1–7.6** of the Full Stack Open course. The key technologies used include React Router v6 and a custom hook called `useField`.
 
@@ -13,7 +13,7 @@ part7/
 ├── ultimate-hooks
 └── routed-anecdotes/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── components/
     │   │   ├── Anecdote.jsx
@@ -24,6 +24,7 @@ part7/
     │   ├── hooks/
     │   │   └── index.js
     │   ├── App.jsx
+    │   ├── index.css
     │   └── main.jsx
     ├── .eslintrc.cjs
     ├── .gitignore
@@ -38,7 +39,7 @@ All course materials for "Routed Anecdotes" exercises **7.1.-7.6.** are located 
 
 ## ✅ Exercises Overview
 
-During the development of the project in Part 5, the following tasks were performed.
+During the development of the project in Part 7, the following tasks were performed.
 
 ### 7.1: Routed Anecdotes, step 1
 

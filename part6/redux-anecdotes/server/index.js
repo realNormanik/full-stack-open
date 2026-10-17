@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Model anegdoty
+// Examples of anecdotes
 const anecdoteSchema = new mongoose.Schema(
   {
     id: {
@@ -44,60 +44,51 @@ const anecdoteSchema = new mongoose.Schema(
 
 const Anecdote = mongoose.model("Anecdote", anecdoteSchema);
 
-// Pomocnicza funkcja obsługująca błędy asynchroniczne
+// A helper function for handling asynchronous errors
 const asyncHandler = (handler) => (req, res, next) => {
   Promise.resolve(handler(req, res, next)).catch(next);
 };
 
 // GET /api/anecdotes
-// Pobierz wszystkie anegdoty
+// Fetch anecdotes
 app.get(
   "/api/anecdotes",
   asyncHandler(async (req, res) => {
-    const anecdotes = await Anecdote.find({})
-      .select("-_id id content votes")
-      .lean();
+    const anecdotes = await Anecdote.find({}).select("-_id id content votes").lean();
 
     res.json(anecdotes);
   })
 );
 
 // GET /api/anecdotes/:id
-// Pobierz pojedynczą anegdotę
+// Fetch anecdote
 app.get(
   "/api/anecdotes/:id",
   asyncHandler(async (req, res) => {
-    const anecdote = await Anecdote.findOne({
-      id: req.params.id,
-    })
-      .select("-_id id content votes")
-      .lean();
+    const anecdote = await Anecdote.findOne({ id: req.params.id, }).select("-_id id content votes").lean();
 
     if (!anecdote) {
       return res.status(404).json({
         error: "Anecdote not found",
       });
-    }
+    };
 
     res.json(anecdote);
   })
 );
 
 // POST /api/anecdotes
-// Dodaj nową anegdotę
+// Create anecdote
 app.post(
   "/api/anecdotes",
   asyncHandler(async (req, res) => {
-    const content =
-      typeof req.body?.content === "string"
-        ? req.body.content.trim()
-        : "";
+    const content = typeof req.body?.content === "string" ? req.body.content.trim() : "";
 
     if (!content) {
       return res.status(400).json({
         error: "Content is required",
       });
-    }
+    };
 
     const anecdote = await Anecdote.create({
       id: randomUUID(),
@@ -114,7 +105,7 @@ app.post(
 );
 
 // POST /api/anecdotes/:id/vote
-// Zwiększ liczbę głosów o jeden
+// Increase the number of votes by one
 app.post(
   "/api/anecdotes/:id/vote",
   asyncHandler(async (req, res) => {
@@ -133,14 +124,14 @@ app.post(
       return res.status(404).json({
         error: "Anecdote not found",
       });
-    }
+    };
 
     res.json(anecdote);
   })
 );
 
 // PUT /api/anecdotes/:id
-// Aktualizuj treść i/lub liczbę głosów
+// Update the content and/or the number of votes
 app.put(
   "/api/anecdotes/:id",
   asyncHandler(async (req, res) => {
@@ -153,27 +144,24 @@ app.put(
         return res.status(400).json({
           error: "Content cannot be empty",
         });
-      }
-    }
+      };
+    };
 
     if (req.body?.votes !== undefined) {
-      if (
-        !Number.isInteger(req.body.votes) ||
-        req.body.votes < 0
-      ) {
+      if (!Number.isInteger(req.body.votes) || req.body.votes < 0) {
         return res.status(400).json({
           error: "Votes must be a non-negative integer",
         });
-      }
+      };
 
       updates.votes = req.body.votes;
-    }
+    };
 
     if (Object.keys(updates).length === 0) {
       return res.status(400).json({
         error: "Provide content or votes to update",
       });
-    }
+    };
 
     const anecdote = await Anecdote.findOneAndUpdate(
       { id: req.params.id },
@@ -190,63 +178,61 @@ app.put(
       return res.status(404).json({
         error: "Anecdote not found",
       });
-    }
+    };
 
     res.json(anecdote);
   })
 );
 
 // DELETE /api/anecdotes/:id
-// Usuń anegdotę
+// Delete anecdote
 app.delete(
   "/api/anecdotes/:id",
   asyncHandler(async (req, res) => {
-    const anecdote = await Anecdote.findOneAndDelete({
-      id: req.params.id,
-    });
+    const anecdote = await Anecdote.findOneAndDelete({ id: req.params.id, });
 
     if (!anecdote) {
       return res.status(404).json({
         error: "Anecdote not found",
       });
-    }
+    };
 
     res.status(204).end();
   })
 );
 
-// Obsługa błędów
+// Error handling
 app.use((err, req, res, next) => {
   console.error(err);
 
   if (res.headersSent) {
     return next(err);
-  }
+  };
 
   if (err.code === 11000) {
     return res.status(409).json({
       error: "An anecdote with this ID already exists",
     });
-  }
+  };
 
   if (err.name === "ValidationError") {
     return res.status(400).json({
       error: err.message,
     });
-  }
+  };
 
   if (err instanceof SyntaxError && "body" in err) {
     return res.status(400).json({
       error: "Invalid JSON body",
     });
-  }
+  };
 
   res.status(500).json({
     error: "Internal server error",
   });
 });
 
-// Połączenie z MongoDB i uruchomienie serwera
+// Connecting to MongoDB and Starting the Server
 async function start() {
   try {
     const mongoUri = process.env.MONGODB_URI;
@@ -255,27 +241,23 @@ async function start() {
 
     if (!mongoUri) {
       throw new Error("Missing MONGODB_URI in .env");
-    }
+    };
 
     if (!mongoName) {
       throw new Error("Missing MONGODB_NAME in .env");
-    }
+    };
 
     await mongoose.connect(mongoUri, {
       dbName: mongoName,
     });
 
-    console.log(
-      `Connected to MongoDB database: ${mongoName}`
-    );
+    console.log(`Connected to MongoDB database: ${mongoName}`);
 
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
-    });
+    app.listen(port, () => {console.log(`Server running on port ${port}`)});
   } catch (error) {
     console.error("Server startup failed:", error);
     process.exit(1);
-  }
-}
+  };
+};
 
 start();

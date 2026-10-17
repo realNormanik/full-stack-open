@@ -32,13 +32,15 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="shell">
       <Menu />
-      <Routes>
-        <Route path="/" element={<AnecdoteList anecdotes={anecdotes} successMessage={successMessage} />} />
-        <Route path="/create" element={<CreateAnecdote newAnecdote={newAnecdote} setSuccessMessage={setSuccessMessage} />} />
-        <Route path="/anecdotes/:id" element={<Anecdote anecdotes={anecdotes} />} />
-      </Routes>
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<AnecdoteList anecdotes={anecdotes} successMessage={successMessage} />} />
+          <Route path="/create" element={<CreateAnecdote newAnecdote={newAnecdote} setSuccessMessage={setSuccessMessage} />} />
+          <Route path="/anecdotes/:id" element={<Anecdote anecdotes={anecdotes} />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   );

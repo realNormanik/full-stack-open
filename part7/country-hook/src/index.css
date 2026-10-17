@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Gabarito", sans-serif;
+
+  /* Semantic colors */
+  --color-background: oklch(96.4% 0.005 270);
+
+  --color-panel: oklch(100% 0 0);
+  --color-soft: oklch(92.6% 0.008 270);
+
+  --color-foreground: oklch(20% 0.025 270);
+  --color-muted: oklch(50% 0.025 270);
+
+  --color-line: oklch(89.5% 0.008 270);
+
+  --color-brand: oklch(55% 0.19 38);
+  --color-brand-ink: oklch(21% 0.03 270);
+  --color-brand-soft: oklch(94.5% 0.035 50);
+  --color-on-brand: oklch(100% 0 0);
+
+  --animate-rise: rise 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(15.5% 0.015 270);
+
+    --color-panel: oklch(20% 0.02 270);
+    --color-soft: oklch(25% 0.022 270);
+
+    --color-foreground: oklch(95.5% 0.006 270);
+    --color-muted: oklch(70% 0.02 270);
+
+    --color-line: oklch(29% 0.022 270);
+
+    --color-brand: oklch(75% 0.16 45);
+    --color-brand-ink: oklch(11.5% 0.012 270);
+    --color-brand-soft: oklch(30% 0.065 40);
+    --color-on-brand: oklch(18% 0.04 40);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+  }
+
+  main {
+    @apply mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center gap-10 px-5 py-15;
+  }
+
+  h1 {
+    @apply font-display text-5xl font-extrabold leading-[0.98] tracking-tight text-foreground sm:text-7xl;
+  }
+
+  h2 {
+    @apply text-black font-display text-4xl font-bold leading-none tracking-tight sm:text-6xl;
+  }
+
+  h3 {
+    @apply font-display text-lg font-semibold tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-brand text-on-brand;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 1ms !important;
+      transition-duration: 1ms !important;
+    }
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+/* Layout */
+@utility hero {
+  @apply flex w-full flex-col items-center gap-5 text-center;
+}
+
+@utility bento {
+  @apply grid w-full animate-rise grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4;
+}
+
+/* Tiles */
+@utility card {
+  @apply flex flex-col gap-3 rounded-4xl border border-line bg-panel p-6;
+}
+
+@utility card-soft {
+  @apply flex flex-col gap-3 rounded-4xl bg-soft p-6;
+}
+
+@utility card-ink {
+  @apply relative isolate flex flex-col justify-end gap-4 overflow-hidden rounded-4xl bg-brand-ink p-7 text-white;
+}
+
+@utility card-brand {
+  @apply flex flex-col justify-between gap-6 rounded-4xl bg-brand p-6 text-on-brand;
+}
+
+/* Text */
+@utility label {
+  @apply text-sm font-medium text-muted;
+}
+
+@utility value {
+  @apply font-display text-3xl font-bold leading-tight tracking-tight;
+}
+
+@utility lead {
+  @apply max-w-md text-base leading-relaxed text-muted;
+}
+
+@utility chip {
+  @apply inline-flex items-center rounded-full bg-brand-soft px-4 py-2 text-sm font-semibold text-brand;
+}
+
+@utility chip-line {
+  @apply inline-flex items-center rounded-full border border-line bg-panel px-4 py-2 text-sm font-semibold text-foreground;
+}
+
+/* Search */
+@utility search {
+  @apply flex w-full max-w-lg items-center gap-2 rounded-full border border-line bg-panel p-2 pl-5 shadow-sm transition-colors duration-200 focus-within:border-brand;
+}
+
+@utility field {
+  @apply min-w-0 flex-1 bg-transparent py-2 text-base font-medium text-foreground outline-none placeholder:text-muted;
+}
+
+@utility find {
+  @apply inline-flex cursor-pointer items-center rounded-full bg-brand px-6 py-3 text-sm font-bold text-on-brand transition duration-200 hover:opacity-90 active:scale-95;
+}
+
+/* Country hero tile */
+@utility backdrop {
+  @apply absolute inset-0 -z-10 size-full scale-125 object-cover blur-2xl;
+}
+
+@utility flag-img {
+  @apply w-45 h-28 rounded-2xl shadow-2xl ring-1 ring-white/20;
+}
+
+/* Status */
+@utility spinner {
+  @apply size-5 animate-spin rounded-full border-2 border-line border-t-brand;
+}
+
+@utility notice {
+  @apply flex w-full items-center justify-center gap-3 rounded-4xl border border-line bg-panel px-6 py-5 text-base font-medium text-foreground;
+}
+
+@utility error {
+  @apply flex w-full items-center justify-center border border-line border-red-500/30 bg-red-500/10 text-red-600/70 fill-red-600/70 gap-1 rounded-4xl px-6 py-5 text-base font-medium;
+  @apply dark:text-red-400 dark:fill-red-400;
+}

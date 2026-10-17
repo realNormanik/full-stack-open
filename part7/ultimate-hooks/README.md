@@ -17,13 +17,19 @@ part7/
 ├── country-hook
 └── ultimate-hooks/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
+    ├── server/
+    │   ├── index.js
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   └── seed.js
     ├── src/
     │   ├── components/
     │   │   └── useResource.jsx
     │   ├── hooks/
     │   │   └── useField.js
     │   ├── App.jsx
+    │   ├── index.css
     │   └── main.jsx
     ├── .eslintrc.cjs
     ├── .gitignore

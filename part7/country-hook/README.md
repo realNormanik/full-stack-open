@@ -15,12 +15,13 @@ part7/
 ├── ultimate-hooks
 └── country-hook/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── components/
     │   │   └── useCountry.jsx
     │   ├── App.jsx
-    │   └── main.jsx
+    │   ├── index.css
+    │   └── index.jsx
     ├── .gitignore
     ├── index.html
     ├── package-lock.json
