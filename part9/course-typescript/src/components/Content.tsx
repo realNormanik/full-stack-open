@@ -1,5 +1,5 @@
-import Part from './Part';
-import { CoursePart } from '../App';
+import Part from "./Part";
+import { CoursePart } from "../App";
 
 type ContentProps = {
   parts: CoursePart[];
@@ -7,9 +7,15 @@ type ContentProps = {
 
 const Content = ({ parts }: ContentProps) => {
   return (
-    <div>
+    <div className="contents">
       {parts.map((part, i) => (
-        <Part key={i} part={part} />
+        <div
+          key={i}
+          className="animate-rise md:col-span-3"
+          style={{ animationDelay: `${180 + i * 70}ms` }}
+        >
+          <Part part={part} />
+        </div>
       ))}
     </div>
   );

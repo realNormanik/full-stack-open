@@ -20,6 +20,16 @@ interface Props {
   onEntryAdded: (entry: Entry) => void;
 };
 
+const textFieldStyles = {
+  mb: 2,
+  "& .MuiInputLabel-root": {
+    lineHeight: "1.7em"
+  },
+  "& .MuiInputBase-input": {
+    padding: "11px 14px"
+  }
+};
+
 const AddEntryForm = ({ patientId, onEntryAdded }: Props) => {
   const [type, setType] = useState<"Hospital" | "HealthCheck" | "OccupationalHealthcare">("Hospital");
   const [date, setDate] = useState("");
@@ -66,7 +76,7 @@ const AddEntryForm = ({ patientId, onEntryAdded }: Props) => {
         if (!dischargeDate || !dischargeCriteria) {
           setError("Please fill in discharge information.");
           return;
-        }
+        };
         entryData = {
           ...baseEntry,
           discharge: {
@@ -85,13 +95,11 @@ const AddEntryForm = ({ patientId, onEntryAdded }: Props) => {
         if (!employerName) {
           setError("Please provide employer name.");
           return;
-        }
+        };
         entryData = {
           ...baseEntry,
           employerName,
-          sickLeave: sickLeaveStart && sickLeaveEnd
-            ? { startDate: sickLeaveStart, endDate: sickLeaveEnd }
-            : undefined
+          sickLeave: sickLeaveStart && sickLeaveEnd ? { startDate: sickLeaveStart, endDate: sickLeaveEnd } : undefined
         };
         break;
       default:
@@ -129,8 +137,17 @@ const AddEntryForm = ({ patientId, onEntryAdded }: Props) => {
       <h3>Add New Entry</h3>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <FormControl fullWidth margin="normal">
-          <Select value={type} onChange={(e) => setType(e.target.value as typeof type)}>
+        <FormControl fullWidth>
+          <InputLabel id="purpose-label">
+            Purpose
+          </InputLabel>
+
+          <Select
+            label="Purpose"
+            value={type}
+            sx={textFieldStyles}
+            onChange={(e) => setType(e.target.value as typeof type)}
+          >
             <MenuItem value="Hospital">Hospital</MenuItem>
             <MenuItem value="HealthCheck">Health Check</MenuItem>
             <MenuItem value="OccupationalHealthcare">Occupational Healthcare</MenuItem>
@@ -139,33 +156,52 @@ const AddEntryForm = ({ patientId, onEntryAdded }: Props) => {
 
         <TextField
           type="date"
-          label="Date"
-          InputLabelProps={{ shrink: true }}
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          label="Date of birth"
+          placeholder="dd/mm/yyyy"
           fullWidth
-          margin="normal"
+          value={date}
+          sx={{
+            ...textFieldStyles,
+            "& input::-webkit-datetime-edit": {
+              opacity: 0,
+            },
+            "& input:focus::-webkit-datetime-edit": {
+              opacity: 1,
+            },
+          }}
+          onChange={(e) => setDate(e.target.value)}
         />
         <TextField
           label="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
           fullWidth
-          margin="normal"
+          value={description}
+          sx={textFieldStyles}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <TextField
           label="Specialist"
-          value={specialist}
-          onChange={(e) => setSpecialist(e.target.value)}
           fullWidth
-          margin="normal"
+          value={specialist}
+          sx={textFieldStyles}
+          onChange={(e) => setSpecialist(e.target.value)}
         />
 
-        <FormControl fullWidth margin="normal">
-          <InputLabel>Diagnosis Codes</InputLabel>
-          <Select
+        <FormControl 
+          fullWidth 
+          sx={{
+            "& .MuiInputLabel-root": {
+              lineHeight: "1em"
+            }
+          }}
+        >
+          <InputLabel id="diagnosis-label">
+            Diagnosis Codes
+          </InputLabel>
+
+          <Select<string[]>
             multiple
             value={diagnosisCodes}
+            sx={textFieldStyles}
             onChange={(e: SelectChangeEvent<typeof diagnosisCodes>) =>
               setDiagnosisCodes(typeof e.target.value === "string" ? e.target.value.split(",") : e.target.value)
             }
@@ -186,29 +222,41 @@ const AddEntryForm = ({ patientId, onEntryAdded }: Props) => {
             <TextField
               type="date"
               label="Discharge Date"
-              InputLabelProps={{ shrink: true }}
-              value={dischargeDate}
-              onChange={(e) => setDischargeDate(e.target.value)}
+              placeholder="dd/mm/yyyy"
               fullWidth
-              margin="normal"
+              value={dischargeDate}
+              sx={{
+                ...textFieldStyles,
+                "& input::-webkit-datetime-edit": {
+                  opacity: 0,
+                },
+                "& input:focus::-webkit-datetime-edit": {
+                  opacity: 1,
+                },
+              }}
+              onChange={(e) => setDischargeDate(e.target.value)}
             />
             <TextField
               label="Discharge Criteria"
-              value={dischargeCriteria}
-              onChange={(e) => setDischargeCriteria(e.target.value)}
               fullWidth
-              margin="normal"
+              value={dischargeCriteria}
+              sx={textFieldStyles}
+              onChange={(e) => setDischargeCriteria(e.target.value)}
             />
           </>
         )}
 
         {type === "HealthCheck" && (
-          <FormControl fullWidth margin="normal">
-            <InputLabel>Health Check Rating</InputLabel>
+          <FormControl fullWidth>
+            <InputLabel id="health-check-label">
+              Health Check Rating
+            </InputLabel>
+
             <Select
-              value={healthCheckRating.toString()}
-              onChange={(e) => setHealthCheckRating(Number(e.target.value))}
               label="Health Check Rating"
+              value={healthCheckRating.toString()}
+              sx={textFieldStyles}
+              onChange={(e) => setHealthCheckRating(Number(e.target.value))}
             >
               <MenuItem value={HealthCheckRating.Healthy}>Healthy (0)</MenuItem>
               <MenuItem value={HealthCheckRating.LowRisk}>Low Risk (1)</MenuItem>
@@ -222,33 +270,55 @@ const AddEntryForm = ({ patientId, onEntryAdded }: Props) => {
           <>
             <TextField
               label="Employer Name"
-              value={employerName}
-              onChange={(e) => setEmployerName(e.target.value)}
               fullWidth
-              margin="normal"
+              value={employerName}
+              sx={textFieldStyles}
+              onChange={(e) => setEmployerName(e.target.value)}
             />
             <TextField
               type="date"
               label="Sick Leave Start"
-              InputLabelProps={{ shrink: true }}
-              value={sickLeaveStart}
-              onChange={(e) => setSickLeaveStart(e.target.value)}
+              placeholder="dd/mm/yyyy"
               fullWidth
-              margin="normal"
+              value={sickLeaveStart}
+              sx={{
+                ...textFieldStyles,
+                "& input::-webkit-datetime-edit": {
+                  opacity: 0,
+                },
+                "& input:focus::-webkit-datetime-edit": {
+                  opacity: 1,
+                },
+              }}
+              onChange={(e) => setSickLeaveStart(e.target.value)}
             />
             <TextField
               type="date"
               label="Sick Leave End"
-              InputLabelProps={{ shrink: true }}
-              value={sickLeaveEnd}
-              onChange={(e) => setSickLeaveEnd(e.target.value)}
+              placeholder="dd/mm/yyyy"
               fullWidth
-              margin="normal"
+              value={sickLeaveEnd}
+              sx={{
+                ...textFieldStyles,
+                "& input::-webkit-datetime-edit": {
+                  opacity: 0,
+                },
+                "& input:focus::-webkit-datetime-edit": {
+                  opacity: 1,
+                },
+              }}
+              onChange={(e) => setSickLeaveEnd(e.target.value)}
             />
           </>
         )}
 
-        <Button type="submit" variant="contained" color="primary" style={{ marginTop: "1rem" }}>
+        <Button 
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ 
+            width: { xs: "100%", sm: "auto" },
+            marginTop: "1rem" }}>
           Add Entry
         </Button>
       </form>

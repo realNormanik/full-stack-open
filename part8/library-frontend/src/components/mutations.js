@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+import { BOOK_DETAILS } from "./queries";
+
 export const EDIT_AUTHOR = gql`
   mutation editAuthor($name: String!, $setBornTo: Int!) {
     editAuthor(name: $name, setBornTo: $setBornTo) {
@@ -25,10 +27,8 @@ export const ADD_BOOK = gql`
     $genres: [String!]!
   ) {
     addBook(title: $title, author: $author, published: $published, genres: $genres) {
-      title
-      author {
-        name
-      }
+      ...BookDetails
     }
   }
+  ${BOOK_DETAILS}
 `;

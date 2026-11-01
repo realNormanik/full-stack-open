@@ -1,40 +1,43 @@
 import { v1 as uuid } from "uuid";
 
 import { Entry, Patient } from "../types";
-import patients from "../../data/patients";
+import { getPatientsCollection } from "../db";
 import { NewPatientZod } from "../schemas/patientSchema";
 
-const getPatients = (): Patient[] => {
-  return patients;
+const getPatients = async (): Promise<Patient[]> => {
+  return getPatientsCollection().find({}, { projection: { _id: 0 } }).toArray();
 };
 
-const addPatient = (newPatient: NewPatientZod): Patient => {
+const addPatient = async (newPatient: NewPatientZod): Promise<Patient> => {
   const patient: Patient = {
     id: uuid(),
     ...newPatient,
     entries: []
   };
 
-  patients.push(patient);
+  // insertOne mutates the passed object (adds _id), so insert a copy.
+  await getPatientsCollection().insertOne({ ...patient });
   return patient;
 };
 
-const getPatientById = (id: string): Patient | undefined => {
-  return patients.find(p => p.id === id);
+const getPatientById = async (id: string): Promise<Patient | null> => {
+  return getPatientsCollection().findOne({ id }, { projection: { _id: 0 } });
 };
 
 const isEntryType = (type: any): type is "Hospital" | "OccupationalHealthcare" => {
   return ["Hospital", "OccupationalHealthcare"].includes(type);
 };
 
-const addEntryToPatient = (id: string, entry: Entry): Entry => {
-  const patient = patients.find(p => p.id === id);
+const addEntryToPatient = async (id: string, entry: Entry): Promise<Entry> => {
+  const result = await getPatientsCollection().updateOne(
+    { id },
+    { $push: { entries: entry } }
+  );
 
-  if (!patient) {
+  if (result.matchedCount === 0) {
     throw new Error("Patient not found");
   };
 
-  patient.entries.push(entry);
   return entry;
 };
 

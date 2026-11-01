@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Hanken Grotesk", sans-serif;
+  --font-display: "Unbounded", sans-serif;
+
+  /* Semantic colors */
+  --color-background: oklch(97.5% 0.014 165);
+
+  --color-panel: oklch(99.5% 0.005 165);
+  --color-soft: oklch(93.5% 0.03 165);
+
+  --color-foreground: oklch(24% 0.06 170);
+  --color-muted: oklch(50% 0.05 170);
+
+  --color-line: oklch(24% 0.06 170);
+
+  --color-brand: oklch(56% 0.24 350);
+  --color-brand-ink: oklch(24% 0.06 170);
+  --color-brand-soft: oklch(93% 0.05 350);
+  --color-on-brand: oklch(99% 0.005 350);
+
+  /* Visibility tones */
+  --color-great: oklch(54% 0.14 160);
+  --color-good: oklch(55% 0.13 230);
+  --color-ok: oklch(62% 0.14 80);
+  --color-poor: oklch(55% 0.2 30);
+
+  --animate-slide: slide 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes slide {
+    from {
+      opacity: 0;
+      transform: translateX(-24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(15% 0.04 270);
+
+    --color-panel: oklch(20% 0.05 270);
+    --color-soft: oklch(26% 0.06 270);
+
+    --color-foreground: oklch(95% 0.01 270);
+    --color-muted: oklch(72% 0.04 270);
+
+    --color-line: oklch(45% 0.07 270);
+
+    --color-brand: oklch(74% 0.17 350);
+    --color-brand-ink: oklch(12% 0.03 170);
+    --color-brand-soft: oklch(32% 0.09 350);
+    --color-on-brand: oklch(16% 0.04 350);
+
+    --color-great: oklch(78% 0.16 160);
+    --color-good: oklch(78% 0.12 225);
+    --color-ok: oklch(82% 0.14 85);
+    --color-poor: oklch(72% 0.17 35);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+    color-scheme: light dark;
+  }
+
+  header {
+    @apply flex flex-col items-start justify-between gap-6 border-b-2 border-line pb-6 sm:flex-row sm:items-end;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+  }
+
+  main {
+    @apply mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 py-8 sm:py-12;
+  }
+
+  h1 {
+    @apply font-display text-4xl font-black leading-none tracking-tighter sm:text-7xl;
+  }
+
+  h2 {
+    @apply font-display text-xl font-bold leading-tight tracking-tight;
+  }
+
+  h3 {
+    @apply font-display text-lg font-bold leading-tight tracking-tight;
+  }
+
+  fieldset {
+    @apply flex flex-col gap-2 border-0 p-0;
+  }
+
+  legend {
+    @apply mb-2;
+  }
+
+  ::selection {
+    @apply bg-brand text-on-brand;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 1ms !important;
+      transition-duration: 1ms !important;
+    }
+  }
+}
+
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+/* Layout */
+@utility layout {
+  @apply grid grid-cols-1 items-start gap-8 lg:grid-cols-[22rem_1fr];
+}
+
+@utility log {
+  @apply flex flex-col gap-3;
+}
+
+/* Panels */
+@utility panel {
+  @apply flex flex-col gap-6 rounded-xl border-2 border-line bg-panel p-6 shadow-[6px_6px_0_0_var(--color-line)] lg:sticky lg:top-8;
+}
+
+@utility row {
+  @apply grid animate-slide grid-cols-1 gap-4 rounded-xl border border-line bg-panel p-5 transition-colors duration-200 hover:bg-soft sm:grid-cols-[1fr_auto] sm:items-center;
+}
+
+@utility empty {
+  @apply flex flex-col gap-2 rounded-xl border-2 border-dashed border-line bg-soft p-6;
+}
+
+/* Text */
+@utility meta {
+  @apply text-sm font-medium text-muted;
+}
+
+@utility note {
+  @apply max-w-prose text-base font-medium leading-relaxed text-muted;
+}
+
+@utility counter {
+  @apply flex items-baseline gap-3 font-display text-5xl font-black leading-none tracking-tighter text-brand;
+}
+
+@utility chip {
+  @apply inline-flex w-fit shrink-0 items-center gap-2 rounded-md bg-brand-soft px-3 py-1.5 text-sm font-bold text-brand;
+}
+
+@utility tags {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+/* Form */
+@utility label {
+  @apply text-sm font-bold text-foreground;
+}
+
+@utility input {
+  @apply w-full rounded-lg border-2 border-line bg-background px-3.5 py-2.5 text-base font-medium text-foreground transition-colors duration-200 placeholder:text-muted/60 hover:border-brand focus:border-brand;
+}
+
+@utility choices {
+  @apply flex flex-wrap gap-2;
+}
+
+@utility choice {
+  @apply relative cursor-pointer;
+
+  & input {
+    @apply sr-only;
+  }
+
+  & span {
+    @apply inline-flex items-center gap-2 rounded-md border-2 border-line bg-background px-3 py-1.5 text-sm font-bold text-muted transition-colors duration-200;
+  }
+
+  &:hover span {
+    @apply border-brand text-foreground;
+  }
+
+  & input:checked + span {
+    @apply border-brand bg-brand text-on-brand;
+  }
+
+  & input:focus-visible + span {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+}
+
+@utility submit {
+  @apply inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2 border-line bg-brand px-6 py-3 font-display text-base font-bold text-on-brand shadow-[4px_4px_0_0_var(--color-line)] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--color-line)] active:translate-x-1 active:translate-y-1 active:shadow-none;
+}
+
+@utility alert {
+  @apply rounded-lg border-2 border-poor bg-poor/10 px-4 py-3 text-sm font-bold text-poor;
+}
+
+/* Visibility */
+@utility tone {
+  @apply inline-flex w-fit shrink-0 items-center rounded-md px-3 py-1.5 text-sm font-bold;
+
+  &[data-tone="great"] {
+    @apply bg-great/15 text-great;
+  }
+
+  &[data-tone="good"] {
+    @apply bg-good/15 text-good;
+  }
+
+  &[data-tone="ok"] {
+    @apply bg-ok/15 text-ok;
+  }
+
+  &[data-tone="poor"] {
+    @apply bg-poor/15 text-poor;
+  }
+}
+
+@utility gauge {
+  @apply grid h-2.5 w-full grid-cols-4 gap-1 sm:w-32;
+
+  & span {
+    @apply rounded-sm bg-soft;
+  }
+
+  &[data-level="poor"] span:nth-child(-n + 1),
+  &[data-level="ok"] span:nth-child(-n + 2),
+  &[data-level="good"] span:nth-child(-n + 3),
+  &[data-level="great"] span {
+    @apply bg-current;
+  }
+
+  &[data-level="great"] {
+    @apply text-great;
+  }
+
+  &[data-level="good"] {
+    @apply text-good;
+  }
+
+  &[data-level="ok"] {
+    @apply text-ok;
+  }
+
+  &[data-level="poor"] {
+    @apply text-poor;
+  }
+}
+
+/* Part layout */
+@utility part-head {
+  @apply flex flex-col items-start gap-3;
+}
+
+@utility part-foot {
+  @apply flex flex-col items-start gap-3 sm:items-end;
+}

@@ -1,36 +1,48 @@
 import { useState } from "react";
 
-const AuthorForm = ({ onSubmit }) => {
+const AuthorForm = ({ authors, onSubmit }) => {
   const [name, setName] = useState("");
   const [born, setBorn] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(name, Number(born));
+    if (!name || born === "") return;
+
+    await onSubmit(name, Number(born));
     setName("");
     setBorn("");
   };
 
   return (
-    <div>
+    <div className="card-soft">
       <h3>Set birthyear</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          name
-          <input
+
+      <form onSubmit={handleSubmit} className="stack">
+        <div className="field">
+          <label htmlFor="author-name" className="label">Name</label>
+          <select
+            id="author-name"
+            className="input"
             value={name}
             onChange={({ target }) => setName(target.value)}
-          />
+          >
+            <option value="" disabled>Select author</option>
+            {authors.map((a) => (
+              <option key={a.name} value={a.name}>{a.name}</option>
+            ))}
+          </select>
         </div>
-        <div>
-          born
+        <div className="field">
+          <label htmlFor="author-born" className="label">Born</label>
           <input
+            id="author-born"
+            className="input"
             type="number"
             value={born}
             onChange={({ target }) => setBorn(target.value)}
           />
         </div>
-        <button type="submit">update author</button>
+        <button type="submit" className="create" disabled={!name || born === ""}>update author</button>
       </form>
     </div>
   );

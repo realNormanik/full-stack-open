@@ -73,6 +73,11 @@ npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part7-country-hook.vercel.app/)
+
 ## 🧠 Notes
 
 - A custom hook called `useCountry` was implemented to **encapsulate the logic for fetching data from the REST Countries API**.

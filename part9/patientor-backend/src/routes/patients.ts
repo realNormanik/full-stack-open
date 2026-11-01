@@ -6,42 +6,44 @@ import { newPatientSchema } from "../schemas/patientSchema";
 
 const router = express.Router();
 
-router.get("/", (_req, res): void => {
-  res.json(patientService.getPatients());
+router.get("/", async (_req, res): Promise<void> => {
+  res.json(await patientService.getPatients());
 });
 
-router.get("/:id", (req, res): void => {
-  const patient = patientService.getPatientById(req.params.id);
-  
+router.get("/:id", async (req, res): Promise<void> => {
+  const patient = await patientService.getPatientById(req.params.id);
+
   if (!patient) {
     res.status(404).json({ error: "Patient not found" });
+    return;
   };
 
   res.json(patient);
 });
 
-router.post("/", (req, res): void => {
+router.post("/", async (req, res): Promise<void> => {
   const parseResult = newPatientSchema.safeParse(req.body);
 
   if (!parseResult.success) {
-    res.status(400).json({ error: parseResult.error.errors });
+    res.status(400).json({ error: parseResult.error.issues });
+    return;
   };
 
-  const newPatientData = parseResult.data;
-  const addedPatient = patientService.addPatient(newPatientData);
+  const addedPatient = await patientService.addPatient(parseResult.data);
   res.json(addedPatient);
 });
 
-router.post("/:id/entries", (req, res): void => {
+router.post("/:id/entries", async (req, res): Promise<void> => {
   try {
-    const patient = patientService.getPatientById(req.params.id);
+    const patient = await patientService.getPatientById(req.params.id);
 
     if (!patient) {
       res.status(404).send({ error: "Patient not found" });
+      return;
     };
 
     const newEntry = toNewEntry(req.body);
-    const addedEntry = patientService.addEntryToPatient(patient.id, newEntry);
+    const addedEntry = await patientService.addEntryToPatient(patient.id, newEntry);
     res.json(addedEntry);
   } catch (e: unknown) {
     let errorMessage = "Something went wrong.";
@@ -49,7 +51,7 @@ router.post("/:id/entries", (req, res): void => {
     if (e instanceof Error) {
       errorMessage += " Error: " + e.message;
     };
-    
+
     res.status(400).send({ error: errorMessage });
   };
 });

@@ -15,12 +15,11 @@ part9/
 ├── flight-diary-backend
 └── flight-diary-frontend/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
-    │   ├── assets/
-    │   │   └── react.svg
     │   ├── App.tsx
     │   ├── diaryService.ts
+    │   ├── index.css
     │   ├── main.tsx
     │   ├── types.tsx
     │   └── vite-env.d.ts
@@ -36,7 +35,7 @@ part9/
     └── vite.config.ts
 ```
 
-All course materials for "Patientor Backend" exercises **9.17.–9.20.** are located inside the `flight-diary-frontend` folder.
+All course materials for "Flight Diary Frontend & Backend" exercises **9.17.–9.20.** are located inside the `flight-diary-frontend` folder.
 
 ## ✅ Exercises Overview
 
@@ -47,7 +46,7 @@ This section summarizes each implemented feature or requirement from the course:
 - Connected to backend at `/api/diaries`
 - Defined strict types for `DiaryEntry`
 - Rendered each diary with `date`, `visibility`, and `weather`
-- Ignored the `comment` field, as it wasn't returned by the API
+- Ignored the `comment` field, as it wasn"t returned by the API
 - Added `diaryService.getAll()` to handle fetch logic
 
 ### 9.18
@@ -72,18 +71,18 @@ This section summarizes each implemented feature or requirement from the course:
 
 ```ts
 export enum Weather {
-  Sunny = 'sunny',
-  Rainy = 'rainy',
-  Cloudy = 'cloudy',
-  Stormy = 'stormy',
-  Windy = 'windy'
+  Sunny = "sunny",
+  Rainy = "rainy",
+  Cloudy = "cloudy",
+  Stormy = "stormy",
+  Windy = "windy"
 }
 
 export enum Visibility {
-  Great = 'great',
-  Good = 'good',
-  Ok = 'ok',
-  Poor = 'poor'
+  Great = "great",
+  Good = "good",
+  Ok = "ok",
+  Poor = "poor"
 }
 
 export interface DiaryEntry {
@@ -94,7 +93,7 @@ export interface DiaryEntry {
   comment?: string;
 }
 
-export type NewDiaryEntry = Omit<DiaryEntry, 'id'>;
+export type NewDiaryEntry = Omit<DiaryEntry, "id">;
 ```
 
 ## 💻 Installation and Running
@@ -126,6 +125,11 @@ npm run dev
 ```
 
 The application will be available at [http://localhost:5173](http://localhost:5173) and server is available at [http://localhost:3000](http://localhost:3000).
+
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel]()
 
 ## 🧠 Notes
 

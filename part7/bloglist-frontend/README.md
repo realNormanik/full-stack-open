@@ -145,6 +145,17 @@ npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173) and server from Part 4 is available at [http://localhost:3003](http://localhost:3003).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part7-bloglist-frontend.vercel.app/)
+
+## 🔐 Demo Login Credentials
+
+| Username     | Password      |
+| ------------ | ------------- |
+| `testuser`   | `password123` |
+
 ## 🧠 Notes
 
 - Always use unique IDs for list rendering.

@@ -4,8 +4,8 @@ import diagnoseService from "../services/diagnoseService";
 
 const router = express.Router();
 
-router.get("/", (_req, res) => {
-  res.json(diagnoseService.getDiagnoses());
+router.get("/", async (_req, res): Promise<void> => {
+  res.json(await diagnoseService.getDiagnoses());
 });
 
 export default router;

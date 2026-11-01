@@ -15,7 +15,7 @@ part9/
 ├── patientor-backend
 └── patientor-frontend/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── components/
     │   │   ├── AddPatientModal/
@@ -27,11 +27,20 @@ part9/
     │   │   │   ├── AddEntryForm.tsx
     │   │   │   ├── EntryDetails.tsx
     │   │   │   └── index.tsx
+    │   │   ├── AppLayout.tsx
     │   │   └── HealthRatingBar.tsx
+    │   ├── services/
+    │   │   └── patients.ts
+    │   ├── theme/
+    │   │   ├── GlobalStyles.tsx
+    │   │   ├── index.ts
+    │   │   └── ThemeModeProvider.tsx
     │   ├── App.tsx
     │   ├── constants.ts
+    │   ├── emotion.d.ts
     │   ├── main.tsx
     │   ├── types.ts
+    │   ├── utils.ts
     │   └── vite-env.d.ts
     ├── .eslintignore
     ├── .eslintrc.cjs
@@ -226,6 +235,11 @@ npm run dev
 ```
 
 The application will run at [http://localhost:5173](http://localhost:5173). Ensure your GraphQL backend (from Part 8) is running at the expected endpoint (e.g., [http://localhost:3003](http://localhost:3003)).
+
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel]()
 
 ## 🧠 Notes
 

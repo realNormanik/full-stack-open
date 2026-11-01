@@ -1,59 +1,66 @@
-import { useState, useEffect } from "react";
-import { useMutation } from "@apollo/client";
+import { useState } from "react";
+import { useMutation } from "@apollo/client/react";
 
 import { LOGIN } from "./mutations";
 
 const LoginForm = ({ setUser, setPage }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const [login, result] = useMutation(LOGIN, {
-    onError: (error) => {
-      console.error(error.graphQLErrors[0]?.message);
-    }
-  });
+  const [login, { loading }] = useMutation(LOGIN);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    login({ variables: { username, password } });
-  };
+    setErrorMessage(null);
 
-  useEffect(() => {
-    if (result.data) {
-      const token = result.data.login.token;
-      const loggedInUser = { username, token };
-      setUser(loggedInUser);
+    try {
+      const { data } = await login({ variables: { username, password } });
+
+      const loggedInUser = { username, token: data.login.token };
       localStorage.setItem("user", JSON.stringify(loggedInUser));
+      setUser(loggedInUser);
       setUsername("");
       setPassword("");
-      setLoginSuccess(true);
       setPage("books");
+    } catch (error) {
+      setErrorMessage(error.message);
     };
-  }, [result.data, username, password, setUser]);
+  };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Log in</h2>
-      <div>
-        username
-        <input
-          value={username}
-          onChange={({ target }) => setUsername(target.value)}
-        />
-      </div>
-      <div>
-        password
-        <input
-          type="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">login</button>
+    <div className="mx-auto w-full max-w-md animate-rise">
+      <form onSubmit={handleLogin} className="card">
+        <h2>Log in</h2>
 
-      {loginSuccess && <p>Login successful!</p>}
-    </form>
+        <div className="field">
+          <label htmlFor="username" className="label">Username</label>
+          <input
+            id="username"
+            className="input"
+            value={username}
+            onChange={({ target }) => setUsername(target.value)}
+          />
+        </div>
+
+        <div className="field">
+          <label htmlFor="password" className="label">Password</label>
+          <input
+            id="password"
+            className="input"
+            type="password"
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+          />
+        </div>
+
+        <button type="submit" className="create w-full" disabled={loading}>login</button>
+
+        {errorMessage && (
+          <p className="notice text-danger" role="alert">{errorMessage}</p>
+        )}
+      </form>
+    </div>
   );
 };
 

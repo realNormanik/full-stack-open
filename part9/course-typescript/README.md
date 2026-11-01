@@ -15,16 +15,18 @@ part9/
 ├── flight-diary-frontend
 └── course-typescript/
     ├── public/
-    │   └── vite.svg
+    │   ├── favicon.ico
+    │   ├── jest.svg
+    │   └── nodejs.svg
     ├── src/
-    │   ├── assets/
-    │   │   └── react.svg
     │   ├── components/
     │   │   ├── Content.tsx
+    │   │   ├── Footer.tsx
     │   │   ├── Header.tsx
     │   │   ├── Part.tsx
     │   │   └── Total.tsx
     │   ├── App.tsx
+    │   ├── index.css
     │   └── main.tsx
     ├── .gitignore
     ├── eslint.config.js
@@ -136,6 +138,11 @@ npm run dev
 ```
 
 The Application is available at [http://localhost:5137](http://localhost:5137).
+
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel]()
 
 ## 🧠 Notes
 

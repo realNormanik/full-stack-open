@@ -119,6 +119,11 @@ npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173) and server is available at [http://localhost:3005](http://localhost:3005).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part7-ultimate-hooks.vercel.app/)
+
 ## 🧠 Notes
 
 - A new generic hook `useResource` was implemented.

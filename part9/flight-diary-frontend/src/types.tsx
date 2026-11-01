@@ -1,5 +1,5 @@
-export type Visibility = 'great' | 'good' | 'ok' | 'poor';
-export type Weather = 'sunny' | 'rainy' | 'cloudy' | 'stormy' | 'windy';
+export type Visibility = "great" | "good" | "ok" | "poor";
+export type Weather = "sunny" | "rainy" | "cloudy" | "stormy" | "windy";
 
 export interface DiaryEntry {
   id: number;
@@ -9,4 +9,4 @@ export interface DiaryEntry {
   comment?: string;
 };
 
-export type NewDiaryEntry = Omit<DiaryEntry, 'id'>;
+export type NewDiaryEntry = Omit<DiaryEntry, "id">;

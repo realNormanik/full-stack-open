@@ -1,6 +1,6 @@
 import { useState, SyntheticEvent } from "react";
 
-import {  TextField, InputLabel, MenuItem, Select, Grid, Button, SelectChangeEvent } from "@mui/material";
+import {  TextField, InputLabel, MenuItem, Select, Grid, Button, SelectChangeEvent, FormControl } from "@mui/material";
 
 import { PatientFormValues, Gender } from "../../types";
 
@@ -17,6 +17,16 @@ interface GenderOption{
 const genderOptions: GenderOption[] = Object.values(Gender).map(v => ({
   value: v, label: v.toString()
 }));
+
+const textFieldStyles = {
+  mb: 2,
+  "& .MuiInputLabel-root": {
+    lineHeight: "1.7em"
+  },
+  "& .MuiInputBase-input": {
+    padding: "11px 14px"
+  }
+};
 
 const AddPatientForm = ({ onCancel, onSubmit }: Props) => {
   const [name, setName] = useState("");
@@ -55,49 +65,60 @@ const AddPatientForm = ({ onCancel, onSubmit }: Props) => {
           label="Name"
           fullWidth 
           value={name}
+          sx={textFieldStyles}
           onChange={({ target }) => setName(target.value)}
         />
         <TextField
           label="Social security number"
           fullWidth
           value={ssn}
+          sx={textFieldStyles}
           onChange={({ target }) => setSsn(target.value)}
         />
         <TextField
           label="Date of birth"
-          placeholder="YYYY-MM-DD"
+          placeholder="dd/mm/yyyy"
           fullWidth
           value={dateOfBirth}
+          sx={textFieldStyles}
           onChange={({ target }) => setDateOfBirth(target.value)}
         />
         <TextField
           label="Occupation"
           fullWidth
           value={occupation}
+          sx={textFieldStyles}
           onChange={({ target }) => setOccupation(target.value)}
         />
 
-        <InputLabel style={{ marginTop: 20 }}>Gender</InputLabel>
-        <Select
-          label="Gender"
-          fullWidth
-          value={gender}
-          onChange={onGenderChange}
-        >
-        {genderOptions.map(option =>
-          <MenuItem
-            key={option.label}
-            value={option.value}
+        <FormControl fullWidth sx={{ mb: 2 }}>
+          <InputLabel id="gender-label">
+            Gender
+          </InputLabel>
+
+          <Select
+            labelId="gender-label"
+            id="gender"
+            value={gender}
+            label="Gender"
+            onChange={onGenderChange}
+            sx={textFieldStyles}
           >
-            {option.label
-          }</MenuItem>
-        )}
-        </Select>
+            {genderOptions.map(option => (
+              <MenuItem
+                key={option.label}
+                value={option.value}
+              >
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <Grid>
-          <Grid item>
+          <Grid>
             <Button
-              color="secondary"
+              color="error"
               variant="contained"
               style={{ float: "left" }}
               type="button"
@@ -106,7 +127,7 @@ const AddPatientForm = ({ onCancel, onSubmit }: Props) => {
               Cancel
             </Button>
           </Grid>
-          <Grid item>
+          <Grid>
             <Button
               style={{
                 float: "right",

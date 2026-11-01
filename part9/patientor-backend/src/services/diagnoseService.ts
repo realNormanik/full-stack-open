@@ -1,8 +1,8 @@
-import { Diagnosis } from '../types';
-import diagnoses from '../../data/diagnoses';
+import { Diagnosis } from "../types";
+import { getDiagnosesCollection } from "../db";
 
-const getDiagnoses = (): Diagnosis[] => {
-  return diagnoses;
+const getDiagnoses = async (): Promise<Diagnosis[]> => {
+  return getDiagnosesCollection().find({}, { projection: { _id: 0 } }).toArray();
 };
 
 export default {

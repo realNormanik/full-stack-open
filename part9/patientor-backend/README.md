@@ -27,6 +27,7 @@ part9/
     │   │   ├── diagnoses.ts
     │   │   ├── diagnosesService.ts
     │   │   └── patientService.ts
+    │   ├── db.ts
     │   ├── index.ts
     │   ├── types.ts
     │   └── utils.ts
@@ -34,6 +35,7 @@ part9/
     ├── package-lock.json
     ├── package.json 
     ├── README.md
+    ├── seed.ts
     └── tsconfig.json
 ```
 

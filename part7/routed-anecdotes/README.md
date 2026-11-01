@@ -114,6 +114,11 @@ npm run dev
 
 The application will be available at [http://localhost:5173](http://localhost:5173).
 
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part7-routed-anecdotes.vercel.app/)
+
 ## 🧠 Notes
 
 - The application is **fully frontend-only**; anecdotes are stored in React component state.

@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { DiaryEntry, NewDiaryEntry } from './types';
+import { DiaryEntry, NewDiaryEntry } from "./types";
 
 const baseUrl = `${import.meta.env.VITE_API_URL}/api/diaries`;
 

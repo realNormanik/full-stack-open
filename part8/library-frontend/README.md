@@ -18,6 +18,7 @@ part8/
     │   │   ├── Authors.jsx
     │   │   ├── Books.jsx
     │   │   ├── BookSubscription.jsx
+    │   │   ├── cacheUpdates.js
     │   │   ├── LoginForm.jsx
     │   │   ├── mutations.js
     │   │   ├── NewBook.jsx
@@ -25,6 +26,7 @@ part8/
     │   │   └── Recommendations.jsx
     │   ├── App.jsx
     │   ├── client.js
+    │   ├── index.css
     │   └── main.js
     ├── .gitignore
     ├── eslint.config.js
@@ -132,6 +134,17 @@ npm run dev
 ```
 
 The application will run at [http://localhost:5173](http://localhost:5173). Ensure your GraphQL backend (from Part 8) is running at the expected endpoint (e.g., [http://localhost:4000](http://localhost:4000)).
+
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel]()
+
+## 🔐 Demo Login Credentials
+
+| Username     | Password      |
+| ------------ | ------------- |
+| `testuser`   | `password123` |
 
 ## 🧠 Notes
 

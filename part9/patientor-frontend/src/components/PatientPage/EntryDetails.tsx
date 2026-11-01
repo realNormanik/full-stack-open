@@ -20,7 +20,7 @@ const EntryDetails = ({ entry, diagnoses }: EntryDetailsProps) => {
       return (
         <Card variant="outlined" style={{ marginBottom: "1em" }}>
           <CardContent>
-            <p>
+            <p style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <strong>{entry.date}</strong> <MedicalServices />
             </p>
             <p>{entry.description}</p>
@@ -42,7 +42,7 @@ const EntryDetails = ({ entry, diagnoses }: EntryDetailsProps) => {
       return (
         <Card variant="outlined" style={{ marginBottom: "1em" }}>
           <CardContent>
-            <p>
+            <p style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <strong>{entry.date}</strong> <Work /> <strong>{entry.employerName}</strong>
             </p>
             <p>{entry.description}</p>
@@ -66,7 +66,7 @@ const EntryDetails = ({ entry, diagnoses }: EntryDetailsProps) => {
       return (
         <Card variant="outlined" style={{ marginBottom: "1em" }}>
           <CardContent>
-            <p>
+            <p style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <strong>{entry.date}</strong> <LocalHospital /> <strong>Health Check</strong>
             </p>
             <p>{entry.description}</p>
