@@ -1,9 +1,9 @@
 import { Gender, Patient } from "../src/types";
-import { v1 as uuid } from "uuid";
+import { randomUUID } from "crypto";
 
 const patients: Patient[] = [
   {
-    id: uuid(),
+    id: randomUUID(),
     name: "John McClane",
     dateOfBirth: "1986-07-09",
     ssn: "090786-122X",
@@ -11,7 +11,7 @@ const patients: Patient[] = [
     occupation: "New York City cop",
     entries: [
       {
-        id: uuid(),
+        id: randomUUID(),
         date: "2020-01-01",
         type: "Hospital",
         specialist: "Dr. House",
@@ -25,7 +25,7 @@ const patients: Patient[] = [
     ]
   },
   {
-    id: uuid(),
+    id: randomUUID(),
     name: "Martin Riggs",
     dateOfBirth: "1979-01-30",
     ssn: "300179-321Y",
@@ -33,7 +33,7 @@ const patients: Patient[] = [
     occupation: "Los Angeles cop",
     entries: [
       {
-        id: uuid(),
+        id: randomUUID(),
         date: "2021-03-15",
         type: "OccupationalHealthcare",
         specialist: "Dr. Strange",
