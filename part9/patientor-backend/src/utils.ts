@@ -1,4 +1,4 @@
-import { v1 as uuid } from "uuid";
+import { randomUUID } from "crypto";
 
 import {
   Entry,
@@ -81,7 +81,7 @@ export const toNewEntry = (object: any): Entry => {
   };
 
   const baseEntry = {
-    id: uuid(),
+    id: randomUUID(),
     description: parseString(object.description, "description"),
     date: parseString(object.date, "date"),
     specialist: parseString(object.specialist, "specialist"),

@@ -129,7 +129,7 @@ The application will be available at [http://localhost:5173](http://localhost:51
 ## 🚀 Demo
 
 You can view a working version of the project here:
-👉 [Vercel]()
+👉 [Vercel](https://part9-flight-diary-frontend.vercel.app/)
 
 ## 🧠 Notes
 

@@ -75,7 +75,7 @@ This section summarizes each implemented feature or requirement from the course:
 - Defined a `Patient` type.
 - Added utility type PublicPatient to hide sensitive fields like ssn:
   ```ts
-  type PublicPatient = Omit<Patient, 'ssn'>;
+  type PublicPatient = Omit<Patient, "ssn">;
   ```
 - Implemented GET /api/patients returning only public patient data.
 - Verified frontend correctly renders list of patients.
@@ -93,9 +93,9 @@ This section summarizes each implemented feature or requirement from the course:
 - Introduced `Gender` enum:
   ```ts
   enum Gender {
-    Male = 'male',
-    Female = 'female',
-    Other = 'other'
+    Male = "male",
+    Female = "female",
+    Other = "other"
   }
   ```
 - Added runtime type-checking utilities (e.g., `isDate`, `isGender`).
