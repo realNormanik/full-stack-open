@@ -1,4 +1,4 @@
-import { v1 as uuid } from "uuid";
+import { randomUUID } from "crypto";
 
 import { Entry, Patient } from "../types";
 import { getPatientsCollection } from "../db";
@@ -10,7 +10,7 @@ const getPatients = async (): Promise<Patient[]> => {
 
 const addPatient = async (newPatient: NewPatientZod): Promise<Patient> => {
   const patient: Patient = {
-    id: uuid(),
+    id: randomUUID(),
     ...newPatient,
     entries: []
   };
