@@ -200,7 +200,7 @@ The server is available at [http://localhost:3003](http://localhost:3003).
 ## 🚀 Demo
 
 You can view a working version of the project here:
-👉 [Vercel]()
+👉 [Vercel](https://part9-bmi-calculator.vercel.app/)
 
 ## 🧠 Notes
 

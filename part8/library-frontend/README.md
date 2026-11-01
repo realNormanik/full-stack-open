@@ -11,7 +11,7 @@ part8/
 ├── graphql-backend
 └── graphql-frontend/
     ├── public/
-    │   └── vite.svg
+    │   └── favicon.ico
     ├── src/
     │   ├── components/
     │   │   ├── AuthorForm.jsx
@@ -138,7 +138,7 @@ The application will run at [http://localhost:5173](http://localhost:5173). Ensu
 ## 🚀 Demo
 
 You can view a working version of the project here:
-👉 [Vercel]()
+👉 [Vercel](https://part8-library-frontend.vercel.app/)
 
 ## 🔐 Demo Login Credentials
 
