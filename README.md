@@ -14,7 +14,7 @@ The course comprises the following parts:
 - **Part 5**: [Testing React Apps](https://github.com/niezle-ziolko/full-stack-open/tree/main/part5)
 - **Part 6**: [Advanced State Management](https://github.com/niezle-ziolko/full-stack-open/tree/main/part6)
 - **Part 7**: [React Router, Custom Hooks, Styling App](https://github.com/niezle-ziolko/full-stack-open/tree/main/part7)
-- **Part 8**: [GraphQL](https://github.com/niezle-ziolko/full-stack-open/tree/main/part8)
+- **Part 8**: [GraphQL](https://github.com/niezle-ziolko/full-stack-open/tree/main/part7)
 - **Part 9**: [TypeScript](https://github.com/niezle-ziolko/full-stack-open/tree/main/part9)
 - **Part 10**: [React Native](https://github.com/niezle-ziolko/full-stack-open/tree/main/part10)
 - **Part 11**: [CI/CD](https://github.com/niezle-ziolko/full-stack-open/tree/main/part11)
