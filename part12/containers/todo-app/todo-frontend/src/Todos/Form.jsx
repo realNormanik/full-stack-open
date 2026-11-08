@@ -1,23 +1,37 @@
-import React, { useState } from 'react'
+import { useState } from "react";
 
 const TodoForm = ({ createTodo }) => {
-  const [text, setText] = useState('')
+  const [text, setText] = useState("");
 
   const onChange = ({ target }) => {
-    setText(target.value)
-  }
+    setText(target.value);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    createTodo({ text })
-  }
+    e.preventDefault();
+    createTodo({ text });
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="text" value={text} onChange={onChange} />
-      <button type="submit"> Submit </button>
-    </form>
-  )
-}
+    <form className="composer" onSubmit={handleSubmit}>
+      <input
+        className="input"
+        type="text"
+        name="text"
+        value={text}
+        onChange={onChange}
+        placeholder="What needs doing?"
+        aria-label="New todo"
+      />
+      <button className="create" type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="14" height="14" fill="currentColor">
+          <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z" />
+        </svg>
 
-export default TodoForm
+        Add todo
+      </button>
+    </form>
+  );
+};
+
+export default TodoForm;

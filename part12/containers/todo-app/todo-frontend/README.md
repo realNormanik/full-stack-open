@@ -24,7 +24,7 @@ full-stack-open-container/
         ├── nginx/
         │   └── default.conf
         ├── public/
-        │   └── vite.svg
+        │   └── favicon.ico
         ├── src/
         │   ├── components/
         │   │   ├── Todo.jsx
@@ -35,8 +35,8 @@ full-stack-open-container/
         │   │   └── TodoView.jsx
         │   ├── utils/
         │   │   └── apiClient.js
-        │   ├── App.css
         │   ├── App.jsx
+        │   ├── index.css
         │   └── main.jsx
         ├── .eslintrc.cjs
         ├── .gitignore

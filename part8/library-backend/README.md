@@ -18,7 +18,7 @@ part8/
     └── README.md
 ```
 
-All course materials for "Graphql Frontend" exercises **8.1.–8.29.** are located inside the `graphql-backend` folder.
+All course materials for "Graphql Frontend" exercises **8.1.–8.29.** are located inside the `library-backend` folder.
 
 ## ✅ Exercises Overview
 
@@ -108,7 +108,7 @@ git clone https://github.com/realNormanik/full-stack-open.git
 2. Navigate to the project directory:
 
 ```bash
-cd part8/graphql-frontend
+cd part8/library-frontend
 ```
 
 3. Install the dependencies:

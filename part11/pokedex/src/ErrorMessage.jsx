@@ -1,7 +1,7 @@
-import React from 'react'
-
 const ErrorMessage = ({ error }) => (
-  <div data-testid="error">An error occured: {error.toString()}</div>
-)
+  <div className="error-message" data-testid="error" role="alert">
+    An error occured: {error.toString()}
+  </div>
+);
 
-export default ErrorMessage
+export default ErrorMessage;

@@ -2,8 +2,6 @@
 
 This project implements a continuous integration and deployment (CI/CD) workflow for a React-based full-stack Pokedex application. The focus is on setting up automated workflows using GitHub Actions, including linting, testing (unit and end-to-end), and building the project for production.
 
-The production version of the application is available at the link: [View Here](https://full-stack-open-pokedex.pages.dev/)
-
 ## 📜 Certificate of Completion
 With the successful completion of assignments 11.1. through 11.21. of the tenth part of the Full Stack Open course, I received the following certificate from the University of Helsinki:
 
@@ -28,6 +26,7 @@ full-stack-open-pokedex/
 ├── e2e-tests/
 │   └── pokedex.spec.js
 ├── public
+│   ├── favicon.ico
 │   └── index.html
 ├── src/
 │   ├── App.jsx
@@ -51,6 +50,7 @@ full-stack-open-pokedex/
 ├── .gitignore
 ├── 11.1_warming_up.md
 ├── app.js
+├── jest.setup.js
 ├── package-lock.json
 ├── package.json
 ├── playwright.config.js
@@ -175,12 +175,12 @@ Chose Playwright for E2E testing.
 
 **Sample Test**:
   ```js
-  const { test, expect } = require('@playwright/test');
+  const { test, expect } = require("@playwright/test");
 
-  test('front page can be opened', async ({ page }) => {
-    await page.goto('http://localhost:5000');
-    await expect(page.getByText('ivysaur')).toBeVisible();
-    await expect(page.getByText('Pokémon and Pokémon character names are trademarks of Nintendo.')).toBeVisible();
+  test("front page can be opened", async ({ page }) => {
+    await page.goto("http://localhost:5000");
+    await expect(page.getByText("ivysaur")).toBeVisible();
+    await expect(page.getByText("Pokémon and Pokémon character names are trademarks of Nintendo.")).toBeVisible();
   });
   ```
 
@@ -195,7 +195,7 @@ Chose Playwright for E2E testing.
 
 ### 11.10: Deploying your application to Cloudflare Pages
 
-Due to the fact that both Fly.io and Render are paid services I dumped my application on Cloudflare Pages. Here's how I did it:
+Due to the fact that both Fly.io and Render are paid services I dumped my application on Cloudflare Pages. Here"s how I did it:
 
 1. Wrangler installation:
   ```bash
@@ -231,7 +231,7 @@ Due to the fact that both Fly.io and Render are paid services I dumped my applic
   wrangler publish
   ```
 
-📦 The application was made available under `https://full-stack-open-pokedex.pages.dev/`
+📦 The application was made available under `https://part11-pokedex.vercel.app/`
 
 ### 11.11: Automatic deployments
 
@@ -267,20 +267,20 @@ Due to the fact that both Fly.io and Render are paid services I dumped my applic
 
 ### 11.12: Health check
 
-Cloudflare Pages does not support traditional container-based health-check like Fly.io, but we can **implement a manual** `/health` endpoint and use Cloudflare's **Monitors** or **Alerts**.
+Cloudflare Pages does not support traditional container-based health-check like Fly.io, but we can **implement a manual** `/health` endpoint and use Cloudflare"s **Monitors** or **Alerts**.
 
 1. added health endpoint in `app.js`:
   ```js
-  app.get('/health', (req, res) => {
-    res.send('ok')
+  app.get("/health", (req, res) => {
+    res.send("ok")
   })
   ```
 
 🔥 Simulated failure
   - Changed code:
     ```js
-    app.get('/health', (req, res) => {
-      throw new Error('Simulated failure');
+    app.get("/health", (req, res) => {
+      throw new Error("Simulated failure");
     });
     ```
 
@@ -324,7 +324,7 @@ Currently, all workflow steps run even on pull requests. This includes the deplo
 
 1. Add an `if` condition to your deployment step:
   ```yaml
-  if: ${{ github.event_name == 'push' }}
+  if: ${{ github.event_name == "push" }}
   ```
 2. Push changes to the PR branch and verify deployment no longer runs.
 3. Merge the PR to `main` and confirm that deployment does run on `main`.
@@ -367,7 +367,7 @@ To skip versioning and deployment for certain commits:
 
 1. Modify the `if` condition for deployment and tagging steps:
   ```yaml
-  if: ${{ github.event_name == 'push' && !contains(join(github.event.head_commit.message, ' '), '#skip') }}
+  if: ${{ github.event_name == "push" && !contains(join(github.event.head_commit.message, " "), "#skip") }}
   ```
 
 2. This checks:
@@ -408,7 +408,7 @@ Protect the `main` branch via GitHub UI:
         uses: rjstone/discord-webhook-notify@v1.0.4
         with:
           severity: info
-          details: '✅ Deployment to Cloudflare Pages was successful!'
+          details: "✅ Deployment to Cloudflare Pages was successful!"
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   notify_failure:
@@ -420,7 +420,7 @@ Protect the `main` branch via GitHub UI:
         uses: rjstone/discord-webhook-notify@v1.0.4
         with:
           severity: error
-          details: '❌ Deployment to Cloudflare Pages failed. Please check the logs.'
+          details: "❌ Deployment to Cloudflare Pages failed. Please check the logs."
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   notify_cancelled:
@@ -432,7 +432,7 @@ Protect the `main` branch via GitHub UI:
         uses: rjstone/discord-webhook-notify@v1.0.4
         with:
           severity: warn
-          details: '⚠️ Deployment to Cloudflare Pages was cancelled.'
+          details: "⚠️ Deployment to Cloudflare Pages was cancelled."
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   ```
 
@@ -446,7 +446,7 @@ Protect the `main` branch via GitHub UI:
 
   on:
     schedule:
-      - cron: '0 8 1 * *'
+      - cron: "0 8 1 * *"
     workflow_dispatch:
 
   env:
@@ -479,7 +479,7 @@ Protect the `main` branch via GitHub UI:
 
   on:
     schedule:
-      - cron: '0 8 1 * *'
+      - cron: "0 8 1 * *"
     workflow_dispatch:
 
   env:
@@ -537,7 +537,7 @@ git clone https://github.com/realNormanik/full-stack-open.git
 2. Navigate to the project directory:
 
 ```bash
-cd full-stack-open/part11/pokedex
+cd part11/pokedex
 ```
 
 3. Install the dependencies:
@@ -568,6 +568,11 @@ npm run test:e2e
 ```bash
 npm run start-prod
 ```
+
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part11-pokedex.vercel.app/)
 
 ## 🧠 Notes
 

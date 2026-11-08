@@ -526,7 +526,7 @@ git clone https://github.com/realNormanik/full-stack-open.git
 2. Navigate to the project directory:
 
 ```bash
-cd full-stack-open/part12/todo-app
+cd part12/containers/todo-app
 ```
 
 3. Start the development environment:
@@ -581,6 +581,11 @@ docker compose -f docker-compose.yml up
 ```bash
 docker compose -f docker-compose.yml down
 ```
+
+## 🚀 Demo
+
+You can view a working version of the project here:
+👉 [Vercel](https://part12-todo-frontend.vercel.app/)
 
 ## 🧠 Notes
   - **redis-cli** is a powerful tool that enables direct access to a Redis instance, making it easier to verify application logic and debug data-related issues without modifying the app’s code.

@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Albert Sans", sans-serif;
+  --font-display: "Young Serif", serif;
+
+  /* Semantic colors – light theme */
+  --color-background: oklch(97.8% 0.01 235);
+
+  --color-panel: oklch(100% 0 0);
+  --color-soft: oklch(94.5% 0.015 240);
+
+  --color-foreground: oklch(22% 0.04 265);
+  --color-muted: oklch(50% 0.03 260);
+
+  --color-line: oklch(89% 0.015 245);
+
+  --color-brand: oklch(50% 0.21 268);
+  --color-brand-soft: oklch(94% 0.04 268);
+  --color-on-brand: oklch(100% 0 0);
+
+  --color-success: oklch(50% 0.12 165);
+  --color-success-soft: oklch(94% 0.04 165);
+
+  --color-warning: oklch(72% 0.16 85);
+  --color-warning-soft: oklch(95% 0.06 90);
+
+  --color-danger: oklch(54% 0.21 25);
+  --color-danger-soft: oklch(95% 0.03 25);
+
+  --animate-settle: settle 350ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 450ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-draw: draw 350ms ease-out 120ms both;
+  --animate-ripple: ripple 700ms ease-out both;
+  --animate-flash: flash 900ms ease-out both;
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.7);
+    }
+    55% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes ripple {
+    from {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(2.1);
+    }
+  }
+
+  @keyframes flash {
+    from {
+      opacity: 0.22;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes settle {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(17% 0.03 265);
+
+    --color-panel: oklch(21% 0.035 265);
+    --color-soft: oklch(26% 0.04 265);
+
+    --color-foreground: oklch(95% 0.01 250);
+    --color-muted: oklch(72% 0.03 255);
+
+    --color-line: oklch(31% 0.04 265);
+
+    --color-brand: oklch(76% 0.14 270);
+    --color-brand-soft: oklch(30% 0.08 270);
+    --color-on-brand: oklch(18% 0.05 268);
+
+    --color-success: oklch(78% 0.13 165);
+    --color-success-soft: oklch(30% 0.06 165);
+
+    --color-warning: oklch(82% 0.15 85);
+    --color-warning-soft: oklch(30% 0.07 85);
+
+    --color-danger: oklch(72% 0.17 25);
+    --color-danger-soft: oklch(30% 0.07 25);
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  main {
+    @apply mx-auto flex w-full max-w-2xl flex-col gap-10 px-5 py-12 sm:py-20;
+  }
+
+  header {
+    @apply flex items-end justify-between gap-4 border-b-2 border-foreground pb-5;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-background font-sans text-foreground antialiased transition-colors duration-300;
+    font-synthesis-weight: none;
+  }
+
+  h1 {
+    @apply font-display text-6xl font-normal leading-none tracking-tight text-foreground sm:text-8xl;
+  }
+
+  h2 {
+    @apply font-display text-3xl font-normal leading-tight tracking-tight sm:text-4xl;
+  }
+
+  h3 {
+    @apply font-display text-2xl font-normal tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-brand text-on-brand;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 1ms !important;
+      transition-duration: 1ms !important;
+    }
+  }
+}
+
+/* Layout */
+@utility u1 {
+  @apply flex flex-col items-center;
+}
+
+@utility stack {
+  @apply flex flex-col gap-2;
+}
+
+/* Header */
+@utility tally {
+  @apply flex flex-col items-end text-sm font-medium tabular-nums text-muted sm:flex-row sm:gap-4;
+}
+
+/* Text */
+@utility label {
+  @apply text-sm font-semibold text-muted;
+}
+
+@utility empty {
+  @apply rounded-2xl border border-dashed border-line px-5 py-10 text-center text-sm text-muted;
+}
+
+@utility visually-hidden {
+  @apply sr-only;
+}
+
+/* Forms */
+@utility composer {
+  @apply flex items-center gap-2 rounded-2xl border border-line bg-panel p-2 transition duration-200 focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/15;
+}
+
+@utility input {
+  @apply min-w-0 flex-1 bg-transparent px-3 py-2.5 text-base text-foreground outline-none placeholder:text-muted;
+}
+
+@utility create {
+  @apply inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand transition duration-200 hover:opacity-90 active:scale-[0.98];
+}
+
+@utility success {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg text-success px-3 py-1.5 text-sm font-semibold transition duration-200 hover:bg-success-soft active:scale-[0.98];
+}
+
+@utility ghost {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-1.5 text-sm font-semibold text-warning transition duration-200 hover:bg-warning-soft active:scale-[0.98];
+}
+
+@utility danger {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-1.5 text-sm font-semibold text-danger transition duration-200 hover:bg-danger-soft active:scale-[0.98];
+}
+
+/* Todo rows */
+@utility todo-row {
+  @apply relative flex animate-settle flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-line bg-panel px-4 py-3.5 transition-colors duration-300;
+
+  /* Soft green wash, played only when a todo has just been completed */
+  &::before {
+    @apply pointer-events-none absolute inset-0 rounded-2xl bg-success opacity-0;
+    content: "";
+  }
+
+  &[data-done="true"] {
+    @apply border-transparent bg-soft;
+  }
+
+  &[data-done="true"][data-celebrate="true"]::before {
+    @apply animate-flash;
+  }
+}
+
+@utility mark {
+  @apply relative grid size-7 shrink-0 place-items-center rounded-full border-2 border-line text-transparent transition-colors duration-300;
+
+  & path {
+    stroke-dasharray: 1;
+  }
+
+  /* Ring that expands outwards on completion */
+  &::after {
+    @apply pointer-events-none absolute -inset-0.5 rounded-full border-2 border-success opacity-0;
+    content: "";
+  }
+
+  &[data-done="true"] {
+    @apply border-success bg-success text-on-brand;
+  }
+
+  &[data-done="true"][data-celebrate="true"] {
+    @apply animate-pop;
+  }
+
+  &[data-done="true"][data-celebrate="true"]::after {
+    @apply animate-ripple;
+  }
+
+  &[data-done="true"][data-celebrate="true"] path {
+    @apply animate-draw;
+  }
+}
+
+@utility todo-text {
+  @apply min-w-0 flex-1 basis-40 wrap-break-word text-base leading-snug text-foreground line-through decoration-transparent transition-colors duration-300;
+
+  &[data-done="true"] {
+    @apply text-muted decoration-muted/60 italic;
+  }
+}
+
+@utility actions {
+  @apply ml-auto flex shrink-0 items-center gap-1;
+}
+
+/* Recap */
+@utility recap {
+  @apply flex flex-wrap gap-2;
+}
+
+@utility chip {
+  @apply inline-flex items-center rounded-md bg-brand-soft px-2.5 py-1 gap-1 text-xs font-semibold text-brand;
+
+  &[data-done="true"] {
+    @apply bg-success-soft text-success;
+  }
+}

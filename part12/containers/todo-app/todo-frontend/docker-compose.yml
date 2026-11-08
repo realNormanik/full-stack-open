@@ -8,4 +8,4 @@ services:
     ports:
       - "80:80"
     environment:
-      - VITE_BACKEND_URL=https://80-niezleziolk-fullstackop-ydxnh98zwrx.ws-eu118.gitpod.io
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL}

@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   todo-backend:
@@ -12,8 +12,9 @@ services:
       - ./todo-backend:/app
       - /app/node_modules
     environment:
-      - MONGO_URL=mongodb://mongo:27017/the_database
-      - REDIS_URL=redis://redis:6379
+      - MONGODB_URI=${MONGODB_URI}
+      - MONGODB_NAME=${MONGODB_NAME}
+      - REDIS_URL=${REDIS_URL}
     depends_on:
       - mongo
       - redis

@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   nginx:
@@ -23,7 +23,7 @@ services:
       - ./todo-frontend:/app
       - /app/node_modules
     environment:
-      - VITE_BACKEND_URL=https://8080-niezleziolk-fullstackop-ydxnh98zwrx.ws-eu118.gitpod.io/api
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL}
 
   todo-backend:
     container_name: todo-backend
@@ -35,8 +35,8 @@ services:
       - ./todo-backend:/app
       - /app/node_modules
     environment:
-      - MONGO_URL=mongodb://mongo:27017/the_database
-      - REDIS_URL=redis://redis:6379
+      - MONGO_URL=${MONGO_URL}
+      - REDIS_URL=${REDIS_URL}
 
   mongo:
     image: mongo

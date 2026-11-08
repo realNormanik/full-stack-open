@@ -17,7 +17,7 @@ jobs:
         run: npm install && npm test
 
       - name: Trigger Cloudflare Pages Deploy Hook
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == "push" }}
         run: |
           curl -X POST "${{ secrets.CLOUDFLARE_WEBHOOK }}"
 
@@ -30,7 +30,7 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1.0.4
         with:
           severity: info
-          details: '✅ Deployment to Cloudflare Pages was successful!'
+          details: "✅ Deployment to Cloudflare Pages was successful!"
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   notify_failure:
@@ -42,7 +42,7 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1.0.4
         with:
           severity: error
-          details: '❌ Deployment to Cloudflare Pages failed. Please check the logs.'
+          details: "❌ Deployment to Cloudflare Pages failed. Please check the logs."
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   notify_cancelled:
@@ -54,5 +54,5 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1.0.4
         with:
           severity: warn
-          details: '⚠️ Deployment to Cloudflare Pages was cancelled.'
+          details: "⚠️ Deployment to Cloudflare Pages was cancelled."
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}

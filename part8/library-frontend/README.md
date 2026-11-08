@@ -8,8 +8,8 @@ The project is organized following the recommended structure for Full Stack Open
 
 ```
 part8/
-├── graphql-backend
-└── graphql-frontend/
+├── library-backend
+└── library-frontend/
     ├── public/
     │   └── favicon.ico
     ├── src/
@@ -37,7 +37,7 @@ part8/
     └── vite.config.js
 ```
 
-All course materials for "Graphql Frontend" exercises **8.8.–8.22.** are located inside the `graphql-frontend` folder.
+All course materials for "Graphql Frontend" exercises **8.8.–8.22.** are located inside the `library-frontend` folder.
 
 ## ✅ Exercises Overview
 
@@ -118,7 +118,7 @@ git clone https://github.com/realNormanik/full-stack-open.git
 2. Navigate to the project directory:
 
 ```bash
-cd part8/graphql-frontend
+cd part8/library-frontend
 ```
 
 3. Install the dependencies:

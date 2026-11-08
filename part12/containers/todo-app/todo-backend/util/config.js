@@ -1,7 +1,15 @@
-const MONGO_URL = process.env.MONGO_URL || undefined
-const REDIS_URL = process.env.REDIS_URL || undefined
+require("dotenv").config();
+
+const MONGODB_URI = process.env.MONGODB_URI || undefined;
+const MONGODB_NAME = process.env.MONGODB_NAME || undefined;
+const REDIS_URL = process.env.REDIS_URL || undefined;
+
+if (MONGODB_URI && !MONGODB_NAME) {
+  throw new Error("Missing MONGODB_NAME in .env")
+};
 
 module.exports = {
-  MONGO_URL,//: 'mongodb://the_username:the_password@localhost:3456/the_database',
-  REDIS_URL//: '//localhost:6378'
-}
+  MONGODB_URI,
+  MONGODB_NAME,
+  REDIS_URL
+};

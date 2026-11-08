@@ -1,17 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const redis = require('../redis');
 
-const configs = require('../util/config')
+const { MONGODB_NAME } = require("../util/config");
 
-let visits = 0
+let visits = 0;
 
 /* GET index data. */
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   visits++
 
+  // Do not expose connection strings (MONGODB_URI contains credentials)
   res.send({
-    ...configs,
+    database: MONGODB_NAME,
     visits
   });
 });

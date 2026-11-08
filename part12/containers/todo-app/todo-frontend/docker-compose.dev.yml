@@ -11,4 +11,4 @@ services:
       - .:/app
       - /app/node_modules
     environment:
-      - VITE_BACKEND_URL=https://3000-niezleziolk-fullstackop-ydxnh98zwrx.ws-eu118.gitpod.io
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL}
