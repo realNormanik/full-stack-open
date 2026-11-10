@@ -11,10 +11,6 @@
     "cli": "node cli.js",
     "test": "node --test --test-concurrency=1 \"test/**/*.test.js\""
   },
-  "engines": {
-    "node": ">=20"
-  },
-  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "dotenv": "^18.0.9",

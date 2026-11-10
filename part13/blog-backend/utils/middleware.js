@@ -101,6 +101,13 @@ function errorHandler(error, request, response, next) {
     return response.status(error.status).json({ error: error.message });
   };
 
+  // Database unreachable (wrong URI, Atlas network access, DNS, timeout...)
+  if (/^Mongo(ose)?(ServerSelection|Network|ParseError)/.test(error.name)) {
+    console.error("Database connection error:", error);
+
+    return response.status(503).json({ error: "Database unavailable" });
+  };
+
   console.error("Error occurred:", error);
 
   response.status(500).json({ error: "Internal Server Error" });
